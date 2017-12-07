@@ -1,0 +1,23 @@
+Question 1:
+
+Hi George,
+
+Thanks for reaching out. We're always more than happy to help with anything that
+will make your experience with Algolia as enjoyable as possible.
+
+Regarding definitions
+
+Records
+Indexing
+
+Does that make sense?
+
+To answer your question about metrics to use with custom ranking:
+
+Does that help?  Please don't hesitate to let me know if this doesn't fully 
+answer your questions, and always feel free to contact us again in the future if
+we can be of help again.
+
+Best regards,
+Drew Stonebraker
+Solutions Engineer
