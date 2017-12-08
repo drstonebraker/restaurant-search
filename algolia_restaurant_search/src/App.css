@@ -204,7 +204,31 @@ body {
 .header {
   background: #1C688E;
   width: 100%;
-  height: 8.3rem; }
+  height: 8.3rem;
+  padding: 2.2rem 2.5rem; }
+
+.header__input {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #D6D6D6;
+  border-radius: 0.3rem;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #666;
+  padding: 1.3rem;
+  font-weight: 100; }
+  .header__input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #B3B3B3; }
+  .header__input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #B3B3B3; }
+  .header__input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #B3B3B3; }
+  .header__input:-moz-placeholder {
+    /* Firefox 18- */
+    color: #B3B3B3; }
 
 .view {
   max-width: 82rem;
