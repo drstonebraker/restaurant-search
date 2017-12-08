@@ -6010,6 +6010,10 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
+stickybits@^2.0.13:
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/stickybits/-/stickybits-2.0.13.tgz#ab0fca4c2bb07c2925e2775b88a2116dc7f57005"
+
 stream-browserify@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.1.tgz#66266ee5f9bdb9940a4e4514cafb43bb71e5c9db"

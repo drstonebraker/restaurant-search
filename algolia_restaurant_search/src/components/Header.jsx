@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Header = ({ setRef, isHeaderSticky }) => (
+const Header = ({ setRef }) => (
   <header
-    className={`
-      header
-      ${isHeaderSticky ? "header--sticky" : ""}
-    `}
+    id="header"
+    className="header"
     ref={setRef}
   >
     <input type="text" className="header__input" />
@@ -15,7 +13,6 @@ const Header = ({ setRef, isHeaderSticky }) => (
 
 Header.propTypes = {
   setRef: PropTypes.func.isRequired,
-  isHeaderSticky: PropTypes.bool.isRequired,
 };
 
 export default Header;

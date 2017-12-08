@@ -10,7 +10,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isHeaderSticky: false,
+
     };
 
     this.handleScroll = this.handleScroll.bind(this);
@@ -38,9 +38,7 @@ class App extends Component {
 
     return (
       <div
-        className={`
-          view
-        `}
+        className="view"
         ref={(view) => { this.view = view; }}
       >
         <Header
