@@ -5,6 +5,7 @@ import algoliasearch from 'algoliasearch';
 import './App.css';
 
 import Header from './components/Header';
+import Content from './components/Content';
 
 const client = algoliasearch("T9X7J1FO6M", "46731abd67e0a850c6deee6223e34ffe");
 const index = client.initIndex("restaurant_locator");
@@ -52,6 +53,7 @@ class App extends Component {
           setRef={(header) => { this.header = header; }}
           onChange={this.handleSearchInput}
         />
+        <Content />
       </div>
     );
   }
