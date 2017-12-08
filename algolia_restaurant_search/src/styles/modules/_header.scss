@@ -1,5 +1,9 @@
 .header {
+  position: absolute;
+  position: sticky;
+  top: 0rem;
   background: #1C688E;
-  width: 100%;
+  width: inherit;
+  max-width: inherit;
   height: 8.3rem;
 }

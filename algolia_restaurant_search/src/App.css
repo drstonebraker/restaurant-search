@@ -198,24 +198,36 @@ html {
   font-size: 10px; }
 
 body {
-  background-image: url("./resources/graphics/background.png"); }
+  background-image: url("./resources/graphics/background.png");
+  background-attachment: fixed; }
 
 .header {
+  position: absolute;
+  position: sticky;
+  top: 0rem;
   background: #1C688E;
-  width: 100%;
+  width: inherit;
+  max-width: inherit;
   height: 8.3rem; }
 
 .view {
+  position: relative;
   max-width: 82rem;
+  width: 100vw;
   margin: 5rem auto;
+  padding-top: 8.3rem;
   background-color: white;
   min-height: 180vh;
   box-shadow: 0 0.4rem 1.8rem rgba(0, 0, 0, 0.2); }
   @media (max-width: 767px) {
     .view {
-      width: 100%;
+      max-width: 100vw;
       margin: 0rem;
       height: 100vh; } }
+
+.header--sticky {
+  position: fixed;
+  position: sticky; }
 
 .view--collapsed {
   height: 80vh; }
