@@ -46,14 +46,10 @@ class App extends Component {
     return (
       <div
         className="view"
-        ref={view => {
-          this.view = view;
-        }}
+        ref={(view) => { this.view = view; }}
       >
         <Header
-          setRef={header => {
-            this.header = header;
-          }}
+          setRef={(header) => { this.header = header; }}
           onChange={this.handleSearchInput}
         />
       </div>
