@@ -17,7 +17,6 @@ class App extends Component {
       currentContent: {}
     };
 
-    this.handleScroll = this.handleScroll.bind(this);
     this.handleSearchInput = this.handleSearchInput.bind(this);
   }
 
@@ -37,15 +36,6 @@ class App extends Component {
         this.setState({ currentContent: content });
       }
     });
-  }
-
-  handleScroll() {
-    const viewOffset = this.view.offsetTop;
-    if (window.pageYOffset >= viewOffset) {
-      this.setState({ isHeaderSticky: true });
-    } else {
-      this.setState({ isHeaderSticky: false });
-    }
   }
 
   handleSearchInput(e) {
