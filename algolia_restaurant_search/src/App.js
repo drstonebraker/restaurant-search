@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import Header from './components/Header'
+
 class App extends Component {
-  constructor(props) {
-    super(props)
+
+  componentDidMount() {
+    document.addEventListener
   }
-
-
 
   render() {
     return (
-      <div className="App">
-        <header className="header">
-          <input 
-            type="text" 
-            className="header__input" />
-        </header>
+      <div className="view">
+        <Header 
+          ref={header => {this.header = header}}
+        />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
+
