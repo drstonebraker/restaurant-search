@@ -13,8 +13,12 @@ const Sidebar = ({ facets, selectedFacets }) => (
   </aside>
 );
 
+Sidebar.defaultProps = {
+  facets: {}
+};
+
 Sidebar.propTypes = {
-  facets: PropTypes.objectOf(PropTypes.objectOf(PropTypes.number)).isRequired,
+  facets: PropTypes.objectOf(PropTypes.objectOf(PropTypes.number)),
   selectedFacets: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool))
     .isRequired
 };

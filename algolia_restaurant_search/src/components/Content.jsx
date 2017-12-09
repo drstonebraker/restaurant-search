@@ -7,7 +7,7 @@ import Results from './Results';
 const Content = ({ facets, selectedFacets, currentResults }) => (
   <div id="content" className="content">
     <Sidebar
-      facets={facets}
+      facets={currentResults.facets}
       selectedFacets={selectedFacets}
     />
     <Results
@@ -21,7 +21,6 @@ Content.defaultProps = {
 };
 
 Content.propTypes = {
-  facets: PropTypes.objectOf(PropTypes.objectOf(PropTypes.number)).isRequired,
   selectedFacets: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool))
     .isRequired,
   currentResults: PropTypes.objectOf(
@@ -30,6 +29,7 @@ Content.propTypes = {
       PropTypes.number,
       PropTypes.array,
       PropTypes.bool,
+      PropTypes.object
     ])
   ),
 };

@@ -16,8 +16,7 @@ class App extends Component {
 
     this.state = {
       clientLocation: false,
-      currentResults: null,
-      facets: {},
+      currentResults: {},
       selectedFacets: {
         food_type: {
           Italian: false,
@@ -53,7 +52,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getFacets();
+    this.getSearchResults();
     this.getClientLocation();
   }
 
@@ -66,18 +65,6 @@ class App extends Component {
     }
   }
 
-  getFacets() {
-    index.search({
-      facets: ["food_type", "payment_options", "price_range", "stars_count"]
-    }, (err, response) => {
-      if (err) {
-        console.error("Error on facet request", err);
-      } else {
-        this.setState({ facets: response.facets });
-      }
-    });
-  }
-
   getSearchResults(query = '') {
     let locationConfig;
     if (this.state.clientlocation) {
@@ -85,8 +72,9 @@ class App extends Component {
     } else {
       locationConfig = { aroundLatLngViaIP: true };
     }
+    const facets = ["food_type", "payment_options", "price_range", "stars_count"];
 
-    const config = Object.assign({ query }, locationConfig);
+    const config = Object.assign({ query, facets }, locationConfig);
 
     index.search(config, (err, content) => {
       if (err) {
@@ -116,7 +104,6 @@ class App extends Component {
           onChange={this.handleSearchInput}
         />
         <Content
-          facets={facets}
           selectedFacets={selectedFacets}
           currentResults={currentResults}
         />

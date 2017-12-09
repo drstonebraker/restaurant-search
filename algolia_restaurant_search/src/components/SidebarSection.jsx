@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 
 import SidebarSectionItem from './SidebarSectionItem';
 
-const getFacetCount = (facet, facetCounts) => (
-  facetCounts[facet] + facetCounts[`Contemporary ${facet}`]
-);
+const getFacetCount = (facet, facetCounts) => {
+  let sum = facetCounts[facet] || 0;
+  sum += facetCounts[`Contemporary ${facet}`] || 0;
+  return sum;
+};
 
 const createSectionItems = (selectedItems, facetCounts) => (
   Object.keys(selectedItems).map(foodType => (
