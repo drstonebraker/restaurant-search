@@ -25,7 +25,7 @@ class App extends Component {
 
     this.state = {
       clientLocation: false,
-      currentResults: {},
+      currentResults: undefined,
       selectedFacets: {
         food_type: {
           Italian: false,
@@ -62,6 +62,7 @@ class App extends Component {
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
+    this.getSearchResults = this.getSearchResults.bind(this);
   }
 
   componentDidMount() {
@@ -148,7 +149,7 @@ class App extends Component {
   }
 
   render() {
-    const { facets, selectedFacets, currentResults } = this.state;
+    const { selectedFacets, currentResults } = this.state;
 
     return (
       <div

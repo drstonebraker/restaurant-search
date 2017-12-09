@@ -7,8 +7,12 @@
   width: 100%;
   margin: 0.1rem 0;
 
-  &:hover, &--selected {
-    background-color: #2897C5;
+  &:hover {
+    background-color: lighten($color: #2897C5, $amount: 40%);
+  }
+
+  &--selected {
+    background-color: #2897C5 !important;
 
     & span {
       color: white;
