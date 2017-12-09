@@ -1,0 +1,26 @@
+.sidebar-section-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem 1.4rem 0.2rem 1.1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin: 0.1rem 0;
+
+  &:hover {
+    background-color: #2897C5;
+
+    & span {
+      color: white;
+    }
+  }
+}
+
+.sidebar-section-item__type {
+  font-size: 1.3rem;
+}
+
+.sidebar-section-item__count {
+  font-size: 1.3rem;
+  color: #9a9a9a;
+  font-weight: 300;
+}

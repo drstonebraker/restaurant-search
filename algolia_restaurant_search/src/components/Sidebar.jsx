@@ -10,6 +10,21 @@ const Sidebar = ({ facets, selectedFacets }) => (
       selectedItems={selectedFacets.food_type}
       facetCounts={facets.food_type}
     />
+    <SidebarSection
+      heading="Rating"
+      selectedItems={selectedFacets.stars_count}
+      facetCounts={facets.star_count}
+    />
+    <SidebarSection
+      heading="Payment Options"
+      selectedItems={selectedFacets.payment_options}
+      facetCounts={facets.payment_options}
+    />
+    <SidebarSection
+      heading="Price Range"
+      selectedItems={selectedFacets.price_range}
+      facetCounts={facets.price_range}
+    />
   </aside>
 );
 

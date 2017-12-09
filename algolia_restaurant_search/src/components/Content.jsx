@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Sidebar from './Sidebar';
 import Results from './Results';
 
-const Content = ({ facets, selectedFacets, currentResults }) => (
+const Content = ({ selectedFacets, currentResults }) => (
   <div id="content" className="content">
     <Sidebar
       facets={currentResults.facets}
