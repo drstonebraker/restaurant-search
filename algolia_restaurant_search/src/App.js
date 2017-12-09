@@ -16,35 +16,35 @@ class App extends Component {
 
     this.state = {
       clientLocation: false,
-      currentContent: null,
+      currentResults: null,
       facets: {},
       selectedFacets: {
-        cuisine: {
-          italian: false,
-          american: false,
-          californian: false,
-          french: false,
-          seafood: false,
-          japanese: false,
-          indian: false,
+        food_type: {
+          Italian: false,
+          American: false,
+          Californian: false,
+          French: false,
+          Seafood: false,
+          Japanese: false,
+          Indian: false,
         },
-        rating: {
+        stars_count: {
           1: false,
           2: false,
           3: false,
           4: false,
           5: false,
         },
-        paymentOptions: {
-          amex: false,
-          discover: false,
-          mastercard: false,
-          visa: false
+        payment_options: {
+          AMEX: false,
+          Discover: false,
+          MasterCard: false,
+          Visa: false
         },
-        price: {
-          low: false,
-          mid: false,
-          high: false,
+        price_range: {
+          '$30 and under': false,
+          '$31 to $50': false,
+          '$50 and over': false,
         }
       }
     };
@@ -92,7 +92,9 @@ class App extends Component {
       if (err) {
         console.error("Error on search", err);
       } else {
-        this.setState({ currentContent: content });
+        this.setState({ currentResults: content }, () =>
+          console.log(this.state)
+        );
       }
     });
   }
@@ -102,7 +104,7 @@ class App extends Component {
   }
 
   render() {
-    const { facets, selectedFacets, currentContent } = this.state;
+    const { facets, selectedFacets, currentResults } = this.state;
 
     return (
       <div
@@ -116,7 +118,7 @@ class App extends Component {
         <Content
           facets={facets}
           selectedFacets={selectedFacets}
-          currentContent={currentContent}
+          currentResults={currentResults}
         />
       </div>
     );

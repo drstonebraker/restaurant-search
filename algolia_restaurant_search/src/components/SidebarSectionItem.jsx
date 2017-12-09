@@ -1,14 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SidebarSectionItem = ({ key }) => (
-  <li key={key} className="sidebar-section-item">
-
-  </li>
+const SidebarSectionItem = ({ type }) => (
+  <li className="sidebar-section-item" />
 );
 
 SidebarSectionItem.propTypes = {
-  key: PropTypes.number.isRequired
+  type: PropTypes.string.isRequired,
 };
 
 export default SidebarSectionItem;
