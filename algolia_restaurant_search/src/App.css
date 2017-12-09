@@ -202,6 +202,10 @@ body {
   background-image: url("./resources/graphics/background.png");
   background-attachment: fixed; }
 
+button {
+  border: none;
+  background-color: transparent; }
+
 .header {
   background: #1C688E;
   width: 100%;
@@ -291,11 +295,11 @@ body {
   justify-content: space-between;
   padding: 0.2rem 1.4rem 0.2rem 1.1rem;
   border-radius: 0.3rem;
-  cursor: pointer;
+  width: 100%;
   margin: 0.1rem 0; }
-  .sidebar-section-item:hover {
+  .sidebar-section-item:hover, .sidebar-section-item--selected {
     background-color: #2897C5; }
-    .sidebar-section-item:hover span {
+    .sidebar-section-item:hover span, .sidebar-section-item--selected span {
       color: white; }
 
 .sidebar-section-item__type {

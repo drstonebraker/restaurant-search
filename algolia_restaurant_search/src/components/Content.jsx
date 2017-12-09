@@ -4,11 +4,12 @@ import PropTypes from "prop-types";
 import Sidebar from './Sidebar';
 import Results from './Results';
 
-const Content = ({ selectedFacets, currentResults }) => (
+const Content = ({ selectedFacets, currentResults, handleFilterClick }) => (
   <div id="content" className="content">
     <Sidebar
       facets={currentResults.facets}
       selectedFacets={selectedFacets}
+      handleFilterClick={handleFilterClick}
     />
     <Results
       currentResults={currentResults}
@@ -32,6 +33,7 @@ Content.propTypes = {
       PropTypes.object
     ])
   ),
+  handleFilterClick: PropTypes.func.isRequired,
 };
 
 export default Content;

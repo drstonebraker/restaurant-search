@@ -9,22 +9,27 @@ const getFacetCount = (facet, facetCounts) => {
   return sum;
 };
 
-const createSectionItems = (selectedItems, facetCounts) => (
-  Object.keys(selectedItems).map(foodType => (
+const createSectionItems = (selectedItems, facetCounts, handleFilterClick) =>
+  Object.keys(selectedItems).map(facetValue => (
     <SidebarSectionItem
-      key={foodType}
-      type={foodType}
-      isSelected={selectedItems[foodType]}
-      count={getFacetCount(foodType, facetCounts)}
+      key={facetValue}
+      type={facetValue}
+      isSelected={selectedItems[facetValue]}
+      count={getFacetCount(facetValue, facetCounts)}
+      onClick={() => handleFilterClick(facetValue)}
     />
-  ))
-);
+  ));
 
-const SidebarSection = ({ heading, selectedItems, facetCounts }) => (
+const SidebarSection = ({
+  heading,
+  selectedItems,
+  facetCounts,
+  handleFilterClick
+}) => (
   <div id="sidebar-section" className="sidebar-section">
     <h6 className="sidebar-section__heading">{heading}</h6>
     <ul className="sidebar-section__list">
-      {createSectionItems(selectedItems, facetCounts)}
+      {createSectionItems(selectedItems, facetCounts, handleFilterClick)}
     </ul>
   </div>
 );
@@ -36,7 +41,8 @@ SidebarSection.defaultProps = {
 SidebarSection.propTypes = {
   heading: PropTypes.string.isRequired,
   selectedItems: PropTypes.objectOf(PropTypes.bool).isRequired,
-  facetCounts: PropTypes.objectOf(PropTypes.number)
+  facetCounts: PropTypes.objectOf(PropTypes.number),
+  handleFilterClick: PropTypes.func.isRequired,
 };
 
 export default SidebarSection;

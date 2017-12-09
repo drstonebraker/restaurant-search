@@ -11,21 +11,12 @@ const client = algoliasearch("T9X7J1FO6M", "46731abd67e0a850c6deee6223e34ffe");
 const index = client.initIndex("restaurant_locator");
 
 class App extends Component {
-  static getFacetFilter(facet) {
-    const facetValues = this.state.selectedFacets[facet];
-
-    const selected = Object.keys(facetValues).filter(value => facetValues[value]);
-    const filters = selected.map(value => App.getFacetValueFilter(facet, value));
-
-    return filters.join(' OR ');
-  }
-
   static getFacetValueFilter(facet, value) {
     switch (facet) {
       case "stars_count":
         return `${facet} >= ${value} AND ${facet} < ${value + 1}`;
       default:
-        return `${facet}:${value}`;
+        return `${facet}:"${value}"`;
     }
   }
 
@@ -66,10 +57,11 @@ class App extends Component {
       }
     };
 
-    this.query = '';
-    this.filters = '';
+    this.query = "";
+    this.filters = "";
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.handleFilterClick = this.handleFilterClick.bind(this);
   }
 
   componentDidMount() {
@@ -79,7 +71,7 @@ class App extends Component {
 
   getClientLocation() {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.getCurrentPosition(position => {
         const clientLocation = [
           position.coords.latitude,
           position.coords.longitude
@@ -105,7 +97,10 @@ class App extends Component {
     const { filters, query } = this;
 
     const config = {
-      query, facets, filters, ...locationConfig
+      query,
+      facets,
+      filters,
+      ...locationConfig
     };
 
     index.search(config, (err, content) => {
@@ -133,11 +128,25 @@ class App extends Component {
   updateFilter() {
     const facets = Object.keys(this.state.selectedFacets);
 
-    const filters = facets.map(facet => App.getFacetFilter(facet));
+    const filters = facets.map(facet => this.getFacetFilter(facet))
+      .filter(filter => filter.length > 0);
 
     this.filters = filters.join(" AND ");
     console.log(this.filters);
     this.getSearchResults();
+  }
+
+  getFacetFilter(facet) {
+    const facetValues = this.state.selectedFacets[facet];
+
+    const selected = Object.keys(facetValues).filter(
+      value => facetValues[value]
+    );
+    const filters = selected.map(value =>
+      App.getFacetValueFilter(facet, value)
+    );
+
+    return filters.join(" OR ");
   }
 
   render() {
@@ -146,15 +155,20 @@ class App extends Component {
     return (
       <div
         className="view"
-        ref={(view) => { this.view = view; }}
+        ref={view => {
+          this.view = view;
+        }}
       >
         <Header
-          setRef={(header) => { this.header = header; }}
+          setRef={header => {
+            this.header = header;
+          }}
           onChange={this.handleSearchInput}
         />
         <Content
           selectedFacets={selectedFacets}
           currentResults={currentResults}
+          handleFilterClick={this.handleFilterClick}
         />
       </div>
     );
