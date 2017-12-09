@@ -258,7 +258,7 @@ body {
   width: 20.7rem;
   border-right: 1px solid #E6E6E6;
   overflow: hidden;
-  padding: 2.8rem 2.3rem; }
+  padding: 3rem 2.3rem; }
   .sidebar:hover {
     overflow-y: auto;
     padding-right: 1.1rem; }
@@ -272,6 +272,9 @@ body {
       border: 0.3rem solid white;
       border-radius: 0.6rem;
       background-color: #D9D9DE; }
+
+.sidebar-section__list {
+  cursor: pointer; }
 
 .sidebar-section {
   margin-bottom: 2.3rem; }

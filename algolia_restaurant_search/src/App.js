@@ -11,6 +11,24 @@ const client = algoliasearch("T9X7J1FO6M", "46731abd67e0a850c6deee6223e34ffe");
 const index = client.initIndex("restaurant_locator");
 
 class App extends Component {
+  static getFacetFilter(facet) {
+    const facetValues = this.state.selectedFacets[facet];
+
+    const selected = Object.keys(facetValues).filter(value => facetValues[value]);
+    const filters = selected.map(value => App.getFacetValueFilter(facet, value));
+
+    return filters.join(' OR ');
+  }
+
+  static getFacetValueFilter(facet, value) {
+    switch (facet) {
+      case "stars_count":
+        return `${facet} >= ${value} AND ${facet} < ${value + 1}`;
+      default:
+        return `${facet}:${value}`;
+    }
+  }
+
   constructor(props) {
     super(props);
 
@@ -25,14 +43,14 @@ class App extends Component {
           French: false,
           Seafood: false,
           Japanese: false,
-          Indian: false,
+          Indian: false
         },
         stars_count: {
           1: false,
           2: false,
           3: false,
           4: false,
-          5: false,
+          5: false
         },
         payment_options: {
           AMEX: false,
@@ -41,12 +59,15 @@ class App extends Component {
           Visa: false
         },
         price_range: {
-          '$30 and under': false,
-          '$31 to $50': false,
-          '$50 and over': false,
+          "$30 and under": false,
+          "$31 to $50": false,
+          "$50 and over": false
         }
       }
     };
+
+    this.query = '';
+    this.filters = '';
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
   }
@@ -59,22 +80,33 @@ class App extends Component {
   getClientLocation() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        const clientLocation = [position.coords.latitude, position.coords.longitude].join(", ");
+        const clientLocation = [
+          position.coords.latitude,
+          position.coords.longitude
+        ].join(", ");
         this.setState({ clientLocation }, this.getSearchResults);
       });
     }
   }
 
-  getSearchResults(query = '') {
+  getSearchResults() {
     let locationConfig;
     if (this.state.clientlocation) {
       locationConfig = { aroundLatLng: this.state.clientLocation };
     } else {
       locationConfig = { aroundLatLngViaIP: true };
     }
-    const facets = ["food_type", "payment_options", "price_range", "stars_count"];
+    const facets = [
+      "food_type",
+      "payment_options",
+      "price_range",
+      "stars_count"
+    ];
+    const { filters, query } = this;
 
-    const config = Object.assign({ query, facets }, locationConfig);
+    const config = {
+      query, facets, filters, ...locationConfig
+    };
 
     index.search(config, (err, content) => {
       if (err) {
@@ -88,7 +120,24 @@ class App extends Component {
   }
 
   handleSearchInput(e) {
-    this.getSearchResults(e.target.value);
+    this.query = e.target.value;
+    this.getSearchResults();
+  }
+
+  handleFilterClick(facet, type) {
+    const selectedFacets = { ...this.state.selectedFacets };
+    selectedFacets[facet][type] = !selectedFacets[facet][type];
+    this.setState({ selectedFacets }, this.updateFilter);
+  }
+
+  updateFilter() {
+    const facets = Object.keys(this.state.selectedFacets);
+
+    const filters = facets.map(facet => App.getFacetFilter(facet));
+
+    this.filters = filters.join(" AND ");
+    console.log(this.filters);
+    this.getSearchResults();
   }
 
   render() {

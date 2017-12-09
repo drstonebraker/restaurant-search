@@ -23,7 +23,9 @@ const createSectionItems = (selectedItems, facetCounts) => (
 const SidebarSection = ({ heading, selectedItems, facetCounts }) => (
   <div id="sidebar-section" className="sidebar-section">
     <h6 className="sidebar-section__heading">{heading}</h6>
-    <ul>{createSectionItems(selectedItems, facetCounts)}</ul>
+    <ul className="sidebar-section__list">
+      {createSectionItems(selectedItems, facetCounts)}
+    </ul>
   </div>
 );
 
