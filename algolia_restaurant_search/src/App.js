@@ -71,7 +71,7 @@ class App extends Component {
 
   getClientLocation() {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
+      navigator.geolocation.getCurrentPosition((position) => {
         const clientLocation = [
           position.coords.latitude,
           position.coords.longitude
@@ -114,39 +114,36 @@ class App extends Component {
     });
   }
 
+  getFacetFilter(facet) {
+    const facetValues = this.state.selectedFacets[facet];
+
+    const selected = Object.keys(facetValues).filter(value => facetValues[value]);
+    const filters = selected.map(value => App.getFacetValueFilter(facet, value));
+
+    return filters.join(" OR ");
+  }
+
   handleSearchInput(e) {
     this.query = e.target.value;
     this.getSearchResults();
   }
 
-  handleFilterClick(facet, type) {
+  handleFilterClick(facet, value) {
     const selectedFacets = { ...this.state.selectedFacets };
-    selectedFacets[facet][type] = !selectedFacets[facet][type];
+    selectedFacets[facet][value] = !selectedFacets[facet][value];
     this.setState({ selectedFacets }, this.updateFilter);
   }
 
   updateFilter() {
     const facets = Object.keys(this.state.selectedFacets);
 
-    const filters = facets.map(facet => this.getFacetFilter(facet))
+    const filters = facets
+      .map(facet => this.getFacetFilter(facet))
       .filter(filter => filter.length > 0);
 
     this.filters = filters.join(" AND ");
     console.log(this.filters);
     this.getSearchResults();
-  }
-
-  getFacetFilter(facet) {
-    const facetValues = this.state.selectedFacets[facet];
-
-    const selected = Object.keys(facetValues).filter(
-      value => facetValues[value]
-    );
-    const filters = selected.map(value =>
-      App.getFacetValueFilter(facet, value)
-    );
-
-    return filters.join(" OR ");
   }
 
   render() {
@@ -155,14 +152,10 @@ class App extends Component {
     return (
       <div
         className="view"
-        ref={view => {
-          this.view = view;
-        }}
+        ref={(view) => { this.view = view; }}
       >
         <Header
-          setRef={header => {
-            this.header = header;
-          }}
+          setRef={(header) => { this.header = header; }}
           onChange={this.handleSearchInput}
         />
         <Content

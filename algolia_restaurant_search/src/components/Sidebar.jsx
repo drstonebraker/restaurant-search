@@ -14,8 +14,8 @@ const Sidebar = ({ facets, selectedFacets, handleFilterClick }) => (
     <SidebarSection
       heading="Rating"
       selectedItems={selectedFacets.stars_count}
-      facetCounts={facets.star_count}
-      handleFilterClick={value => handleFilterClick("star_count", value)}
+      facetCounts={facets.stars_count}
+      handleFilterClick={value => handleFilterClick("stars_count", value)}
     />
     <SidebarSection
       heading="Payment Options"
