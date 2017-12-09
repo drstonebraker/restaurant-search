@@ -22,14 +22,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
+    this.getFacets();
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+  getFacets() {
+    index.search({
+      facets: ["food_type", "payment_options", "price_range", "stars_count"]
+    }, (err, response) => {
+      this
+      console.log(response);
+    });
   }
 
-  getAlgoliaResults(query) {
+  getSearchResults(query) {
     index.search(query, (err, content) => {
       if (err) {
         console.error("Error on search", err);
@@ -40,7 +45,7 @@ class App extends Component {
   }
 
   handleSearchInput(e) {
-    this.getAlgoliaResults(e.target.value);
+    this.getSearchResults(e.target.value);
   }
 
   render() {
