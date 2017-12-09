@@ -7,7 +7,7 @@ const Sidebar = ({ facets, selectedFacets }) => (
   <aside id="sidebar" className="sidebar">
     <SidebarSection
       heading="Cuisine/Food Type"
-      selected={selectedFacets.food_type}
+      selectedItems={selectedFacets.food_type}
       facetCounts={facets.food_type}
     />
   </aside>
