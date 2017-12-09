@@ -15,7 +15,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-      currentContent: {}
+      currentContent: null,
+      facets: {},
+      clientLocation: false,
     };
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -23,19 +25,41 @@ class App extends Component {
 
   componentDidMount() {
     this.getFacets();
+    this.getClientLocation();
+  }
+
+  getClientLocation() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const clientLocation = [position.coords.latitude, position.coords.longitude].join(", ");
+        this.setState({ clientLocation }, this.getSearchResults);
+      });
+    }
   }
 
   getFacets() {
     index.search({
       facets: ["food_type", "payment_options", "price_range", "stars_count"]
     }, (err, response) => {
-      this
-      console.log(response);
+      if (err) {
+        console.error("Error on facet request", err);
+      } else {
+        this.setState({ facets: response.facets });
+      }
     });
   }
 
-  getSearchResults(query) {
-    index.search(query, (err, content) => {
+  getSearchResults(query = '') {
+    let locationConfig;
+    if (this.state.clientlocation) {
+      locationConfig = { aroundLatLng: this.state.clientLocation };
+    } else {
+      locationConfig = { aroundLatLngViaIP: true };
+    }
+
+    const config = Object.assign({ query }, locationConfig);
+
+    index.search(config, (err, content) => {
       if (err) {
         console.error("Error on search", err);
       } else {
