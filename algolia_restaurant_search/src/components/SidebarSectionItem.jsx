@@ -1,7 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SidebarSectionItem = ({ type, isSelected, count, onClick }) => (
+import StarRating from './StarRating';
+
+const isNumeric = value => !isNaN(value);
+
+const SidebarSectionItem = ({
+  value, isSelected, count, onClick
+}) => (
   <li>
     <button
       className={`
@@ -11,7 +17,9 @@ const SidebarSectionItem = ({ type, isSelected, count, onClick }) => (
       type="button"
       onClick={onClick}
     >
-      <span className="sidebar-section-item__type">{type}</span>
+      <span className="sidebar-section-item__type">
+        { isNumeric(value) ? <StarRating rating={Number(value)} /> : value }
+      </span>
       <span className="sidebar-section-item__count">{count}</span>
     </button>
   </li>
@@ -22,7 +30,7 @@ SidebarSectionItem.defaultProps = {
 };
 
 SidebarSectionItem.propTypes = {
-  type: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   isSelected: PropTypes.bool.isRequired,
   count: PropTypes.number,
   onClick: PropTypes.func.isRequired,

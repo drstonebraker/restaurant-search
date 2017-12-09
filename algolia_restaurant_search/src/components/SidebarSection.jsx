@@ -13,7 +13,7 @@ const createSectionItems = (selectedItems, facetCounts, handleFilterClick) =>
   Object.keys(selectedItems).map(facetValue => (
     <SidebarSectionItem
       key={facetValue}
-      type={facetValue}
+      value={facetValue}
       isSelected={selectedItems[facetValue]}
       count={getFacetCount(facetValue, facetCounts)}
       onClick={() => handleFilterClick(facetValue)}

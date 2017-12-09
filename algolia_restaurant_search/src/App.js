@@ -14,7 +14,7 @@ class App extends Component {
   static getFacetValueFilter(facet, value) {
     switch (facet) {
       case "stars_count":
-        return `${facet} >= ${value} AND ${facet} < ${value + 1}`;
+        return `${facet}: ${value} TO ${Number(value) + 0.9}`;
       default:
         return `${facet}:"${value}"`;
     }
@@ -120,7 +120,8 @@ class App extends Component {
     const selected = Object.keys(facetValues).filter(value => facetValues[value]);
     const filters = selected.map(value => App.getFacetValueFilter(facet, value));
 
-    return filters.join(" OR ");
+    const joinedFilters = filters.join(" OR ");
+    return filters.length > 1 ? `(${joinedFilters})` : joinedFilters;
   }
 
   handleSearchInput(e) {

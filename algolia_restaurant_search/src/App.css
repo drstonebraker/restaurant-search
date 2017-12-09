@@ -291,6 +291,7 @@ button {
   margin-bottom: 0.9rem; }
 
 .sidebar-section-item {
+  position: relative;
   display: flex;
   justify-content: space-between;
   padding: 0.2rem 1.4rem 0.2rem 1.1rem;
@@ -309,6 +310,30 @@ button {
   font-size: 1.3rem;
   color: #9a9a9a;
   font-weight: 300; }
+
+.stars {
+  margin: 0.2rem 1.1rem;
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  width: 8.1rem;
+  background-size: 8.2rem;
+  background-image: url("./resources/graphics/stars-icons.png");
+  background-repeat: no-repeat;
+  height: 1.5rem; }
+
+.stars--empty {
+  z-index: 0; }
+
+.stars--active {
+  z-index: 1;
+  background-position-y: -1.6rem; }
+
+.results {
+  padding-left: 20.7rem;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%; }
 
 .view--collapsed {
   height: 80vh; }

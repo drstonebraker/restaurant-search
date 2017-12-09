@@ -1,0 +1,20 @@
+.stars {
+  margin: 0.2rem 1.1rem;
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  width: 8.1rem;
+  background-size: 8.2rem;
+  background-image: url('./resources/graphics/stars-icons.png');
+  background-repeat: no-repeat;
+  height: 1.5rem;
+}
+
+.stars--empty {
+  z-index: 0;
+}
+
+.stars--active {
+  z-index: 1;
+  background-position-y: -1.6rem;
+}
