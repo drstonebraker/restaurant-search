@@ -15,9 +15,38 @@ class App extends Component {
     super(props);
 
     this.state = {
+      clientLocation: false,
       currentContent: null,
       facets: {},
-      clientLocation: false,
+      selectedFacets: {
+        cuisine: {
+          italian: false,
+          american: false,
+          californian: false,
+          french: false,
+          seafood: false,
+          japanese: false,
+          indian: false,
+        },
+        rating: {
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+        },
+        paymentOptions: {
+          amex: false,
+          discover: false,
+          mastercard: false,
+          visa: false
+        },
+        price: {
+          low: false,
+          mid: false,
+          high: false,
+        }
+      }
     };
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -73,6 +102,8 @@ class App extends Component {
   }
 
   render() {
+    const { facets, selectedFacets, currentContent } = this.state;
+
     return (
       <div
         className="view"
@@ -82,7 +113,11 @@ class App extends Component {
           setRef={(header) => { this.header = header; }}
           onChange={this.handleSearchInput}
         />
-        <Content />
+        <Content
+          facets={facets}
+          selectedFacets={selectedFacets}
+          currentContent={currentContent}
+        />
       </div>
     );
   }

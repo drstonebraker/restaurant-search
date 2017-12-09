@@ -5,9 +5,10 @@ import Sidebar from './Sidebar';
 import Results from './Results';
 
 const Content = () => (
-  <main id="content" className="content">
-
-  </main>
+  <div id="content" className="content">
+    <Sidebar />
+    <Results />
+  </div>
 );
 
 Content.propTypes = {

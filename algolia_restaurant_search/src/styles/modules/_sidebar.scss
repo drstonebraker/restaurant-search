@@ -1,0 +1,16 @@
+@import '../globals/all.scss';
+
+.sidebar {
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  bottom: 0rem;
+  width: 20.7rem;
+  border-right: 1px solid #E6E6E6;
+  overflow: hidden;
+
+  &:hover {
+    @include scrollable_light_bg;
+  }
+
+}

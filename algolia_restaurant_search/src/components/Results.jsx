@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Results = () => (
-  <section id="results" className="results">
+  <main id="results" className="results">
 
-  </section>
+  </main>
 );
 
 Results.propTypes = {
