@@ -75,6 +75,23 @@ class App extends Component {
     this.getClientLocation();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const prevIsSidebarOpen = prevState.isSidebarOpen;
+    const { isSidebarOpen } = this.state;
+
+    if (!prevIsSidebarOpen && isSidebarOpen) {
+      // just opened sidebar
+      document.body.addEventListener('click', this.handleCloseSidebar);
+    } else if (prevIsSidebarOpen && !isSidebarOpen) {
+      // just closed sidebar
+      this.removeCloseSidebarEventListener();
+    }
+  }
+
+  componentWillUnmount() {
+    this.removeCloseSidebarEventListener();
+  }
+
   getClientLocation() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -139,6 +156,10 @@ class App extends Component {
     return filters.length > 1 ? `(${joinedFilters})` : joinedFilters;
   }
 
+  removeCloseSidebarEventListener() {
+    document.body.removeEventListener('click', this.handleCloseSidebar);
+  }
+
   handleSearchInput(e) {
     this.query = e.target.value;
     this.getSearchResults();
@@ -161,13 +182,16 @@ class App extends Component {
   handleOpenSidebar() {
     if (!this.state.isSidebarOpen) {
       this.setState({ isSidebarOpen: true });
-      document.body.addEventListener('click', this.handleCloseSidebar);
     }
   }
 
   handleCloseSidebar(e) {
-    // this.setState({ isSidebarOpen: false });
-    console.log(e)
+    e.preventDefault();
+    const sidebar = document.getElementById('sidebar');
+
+    if (!sidebar.contains(e.target)) {
+      this.setState({ isSidebarOpen: false });
+    }
   }
 
   updateFilter() {
