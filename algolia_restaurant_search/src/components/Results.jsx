@@ -15,11 +15,13 @@ const createResultsItems = (hits, isExpanded) => {
 
 const isFullResults = (currentResults, isExpanded) => {
   if (Object.keys(currentResults).length > 0) {
-    const isLastPage = Number(currentResults.nbPages) === Number(currentResults.page) + 1;
+    const isLastPage = Number(currentResults.nbPages) <= Number(currentResults.page) + 1;
     const isPartialFirstPage = !isExpanded && currentResults.hits.length > 3;
 
     return isLastPage && !isPartialFirstPage;
   }
+
+  return null;
 };
 
 const Results = ({ currentResults, isExpanded, handleExpand }) => (

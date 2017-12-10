@@ -2,6 +2,7 @@
   overflow-y: auto;
 
   &::-webkit-scrollbar {
+    position: absolute;
     width: 1.2rem;
   }
 

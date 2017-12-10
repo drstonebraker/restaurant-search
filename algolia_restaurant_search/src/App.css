@@ -269,6 +269,7 @@ a {
     overflow-y: auto;
     padding-right: 1.1rem; }
     .sidebar:hover::-webkit-scrollbar {
+      position: absolute;
       width: 1.2rem; }
     .sidebar:hover::-webkit-scrollbar-track {
       border-radius: 1.2rem;
