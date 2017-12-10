@@ -13,6 +13,15 @@ const createResultsItems = (hits, isExpanded) => {
   return isExpanded ? itemsList : itemsList.slice(0, 3);
 };
 
+const isFullResults = (currentResults, isExpanded) => {
+  if (Object.keys(currentResults).length > 0) {
+    const isLastPage = Number(currentResults.nbPages) === Number(currentResults.page) + 1;
+    const isPartialFirstPage = !isExpanded && currentResults.hits.length > 3;
+
+    return isLastPage && !isPartialFirstPage;
+  }
+};
+
 const Results = ({ currentResults, isExpanded, handleExpand }) => (
   <main id="results" className="results">
     <div>
@@ -32,13 +41,16 @@ const Results = ({ currentResults, isExpanded, handleExpand }) => (
 
     </div>
 
-    <button
-      type="button"
-      className="results__expand-btn"
-      onClick={handleExpand}
-    >
-      Show More
-    </button>
+    {
+      !isFullResults(currentResults, isExpanded) &&
+      <button
+        type="button"
+        className="results__expand-btn"
+        onClick={handleExpand}
+      >
+        Show More
+      </button>
+    }
 
   </main>
 );
