@@ -321,6 +321,10 @@ a {
     background-color: #2897C5 !important; }
     .sidebar-section-item--selected span {
       color: white; }
+  @media (max-width: 867px) {
+    .sidebar-section-item {
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem; } }
 
 .sidebar-section-item__type {
   font-size: 1.3rem; }
