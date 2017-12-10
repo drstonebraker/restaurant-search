@@ -106,11 +106,11 @@ class App extends Component {
   }
 
   getSearchResults(isNextPage = false) {
-    const { clientlocation, currentResults } = this.state;
+    const { clientLocation, currentResults } = this.state;
     const page = isNextPage ? currentResults.page + 1 : 0;
 
     let locationConfig;
-    if (this.state.clientlocation) {
+    if (clientLocation) {
       locationConfig = { aroundLatLng: this.state.clientLocation };
     } else {
       locationConfig = { aroundLatLngViaIP: true };
