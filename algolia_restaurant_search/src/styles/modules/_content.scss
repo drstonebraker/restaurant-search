@@ -1,6 +1,5 @@
 .content {
-  position: absolute;
-  top: 8.3rem;
-  bottom: 0rem;
+  position: relative;
+  min-height: calc(80vh - 8.3rem);
   width: 100%;
 }

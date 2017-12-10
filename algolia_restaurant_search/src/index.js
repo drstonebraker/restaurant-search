@@ -9,3 +9,4 @@ import stickybits from 'stickybits';
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
 stickybits("#header");
+// stickybits("#sidebar");
