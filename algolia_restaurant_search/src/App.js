@@ -75,11 +75,12 @@ class App extends Component {
   getClientLocation() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
+        const { isExpanded } = this.state;
         const clientLocation = [
           position.coords.latitude,
           position.coords.longitude
         ].join(", ");
-        this.setState({ clientLocation }, this.getSearchResults);
+        this.setState({ clientLocation }, () => isExpanded || this.getSearchResults());
       });
     }
   }
