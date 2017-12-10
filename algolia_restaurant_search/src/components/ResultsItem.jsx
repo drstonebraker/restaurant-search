@@ -24,10 +24,15 @@ const ResultsItem = ({ restaurant }) => (
       />
       <div className="results-item__info">
         <h6 className="results-item__name">{restaurant.name}</h6>
-        <div>
+        <div className="results-item__line">
           <span className="results-item__rating">{restaurant.stars_count}</span>
           <StarRating rating={restaurant.stars_count} />
-          <span></span>
+          <span className="results-item__review-count">({restaurant.reviews_count} reviews)</span>
+        </div>
+        <div className="results-item__line">
+          <span className="results-item__description">
+            {restaurant.food_type} | {restaurant.neighborhood} | {restaurant.price_range}
+          </span>
         </div>
       </div>
     </a>

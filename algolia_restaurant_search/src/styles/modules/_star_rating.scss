@@ -1,7 +1,9 @@
 .star-rating {
   position: relative;
-  vertical-align: baseline;
+  display: inline-block;
+  vertical-align: middle;
   height: 1.5rem;
+  width: 8.2rem;
 }
 
 .stars {

@@ -321,8 +321,10 @@ a {
 
 .star-rating {
   position: relative;
-  vertical-align: baseline;
-  height: 1.5rem; }
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.5rem;
+  width: 8.2rem; }
 
 .stars {
   position: absolute;
@@ -413,12 +415,27 @@ a {
   line-height: 1.9rem;
   font-size: 1.6rem; }
 
+.results-item__line {
+  margin-top: 0.7rem; }
+
 .results-item__rating {
   color: #FFAB66;
   line-height: 2rem;
   font-size: 1.4rem;
   vertical-align: middle;
-  margin-right: 0.4rem; }
+  margin-right: 0.8rem; }
+
+.results-item__review-count {
+  vertical-align: middle;
+  color: rgba(112, 112, 112, 0.6);
+  font-size: 1.4rem;
+  margin-left: 0.8rem;
+  font-weight: 300; }
+
+.results-item__description {
+  color: rgba(112, 112, 112, 0.6);
+  font-size: 1.4rem;
+  font-weight: 300; }
 
 .view--collapsed {
   height: 80vh; }
