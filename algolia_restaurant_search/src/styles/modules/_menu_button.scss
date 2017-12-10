@@ -1,0 +1,19 @@
+.menu-button {
+  display: none;
+  padding: 0rem;
+  vertical-align: middle;
+  text-align: left;
+  margin-left: -0.7rem;
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+
+  @include phone {
+    display: inline-block;
+  }
+}
+
+.menu-button__svg {
+  margin-top: -0.3rem;
+	fill: white;
+}

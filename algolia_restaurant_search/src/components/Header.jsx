@@ -3,8 +3,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import MenuButton from './MenuButton';
+
 const Header = ({ setRef, onChange }) => (
   <header id="header" className="header" ref={setRef}>
+    <MenuButton />
     <input
       autoFocus
       type="text"

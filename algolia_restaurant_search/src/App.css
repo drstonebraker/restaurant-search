@@ -223,7 +223,11 @@ a {
   font-size: 15px;
   color: #666;
   padding: 1.3rem;
-  font-weight: 100; }
+  font-weight: 100;
+  vertical-align: middle; }
+  @media (max-width: 867px) {
+    .header__input {
+      width: calc(100% - 4.3rem); } }
   .header__input::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
     color: #B3B3B3; }
@@ -240,14 +244,14 @@ a {
 .view {
   position: relative;
   max-width: 82rem;
-  width: 100vw;
+  width: 100%;
   margin: 5rem auto;
   background-color: white;
   min-height: 80vh;
   box-shadow: 0 0.4rem 1.8rem rgba(0, 0, 0, 0.2); }
   @media (max-width: 867px) {
     .view {
-      width: 100%;
+      max-width: unset;
       margin: 0rem;
       min-height: 100vh; } }
 
@@ -286,18 +290,6 @@ a {
       position: fixed;
       top: 8.3rem;
       left: 0rem; } }
-
-.menu_button {
-  display: none; }
-  @media (max-width: 867px) {
-    .menu_button {
-      display: inline-block;
-      position: absolute;
-      top: 0rem;
-      left: 20.7rem;
-      height: 3rem;
-      width: 3rem;
-      background-color: red; } }
 
 .sidebar-section__list {
   cursor: pointer; }
@@ -465,3 +457,20 @@ a {
   display: inline-block;
   text-overflow: ellipsis;
   overflow-x: hidden; }
+
+.menu-button {
+  display: none;
+  padding: 0rem;
+  vertical-align: middle;
+  text-align: left;
+  margin-left: -0.7rem;
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem; }
+  @media (max-width: 867px) {
+    .menu-button {
+      display: inline-block; } }
+
+.menu-button__svg {
+  margin-top: -0.3rem;
+  fill: white; }

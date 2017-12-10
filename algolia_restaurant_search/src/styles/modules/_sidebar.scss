@@ -24,21 +24,6 @@
   }
 }
 
-.menu_button {
-  display: none;
-
-  @include phone {
-    display: inline-block;
-    position: absolute;
-    top: 0rem;
-    left: 20.7rem;
-    height: 3rem;
-    width: 3rem;
-    background-color: red;
-  }
-}
-
-
 .sidebar-section__list {
   cursor: pointer;
 }
