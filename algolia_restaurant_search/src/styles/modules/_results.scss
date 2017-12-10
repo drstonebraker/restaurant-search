@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 3rem 2.4rem 1.7rem 23.9rem;
+  padding: 3rem 2.4rem 1.7rem 23.1rem;
   width: 100%;
   box-sizing: border-box;
   height: 100%;
@@ -15,6 +15,7 @@
   color: #333;
   background-color: white;
   padding-right: 2rem;
+  padding-left: 0.8rem;
   z-index: 1;
 }
 
@@ -27,6 +28,7 @@
 }
 
 .results__list {
+  padding: 1.2rem 0;
   margin-top: -1px;
   border-top: 1px solid #e6e6e6;
   z-index: 0;

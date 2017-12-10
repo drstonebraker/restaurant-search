@@ -26,6 +26,7 @@ class App extends Component {
     this.state = {
       clientLocation: false,
       currentResults: undefined,
+      isExpanded: false,
       selectedFacets: {
         food_type: {
           Italian: false,
@@ -149,7 +150,7 @@ class App extends Component {
   }
 
   render() {
-    const { selectedFacets, currentResults } = this.state;
+    const { selectedFacets, currentResults, isExpanded } = this.state;
 
     return (
       <div
@@ -164,6 +165,7 @@ class App extends Component {
           selectedFacets={selectedFacets}
           currentResults={currentResults}
           handleFilterClick={this.handleFilterClick}
+          isExpanded={isExpanded}
         />
       </div>
     );

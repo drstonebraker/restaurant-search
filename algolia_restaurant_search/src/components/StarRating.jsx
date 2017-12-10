@@ -19,7 +19,7 @@ const calculateRatingWidth = (rating) => {
 };
 
 const StarRating = ({ rating }) => (
-  <span aria-label={`A star rating of ${rating}`}>
+  <span aria-label={`A star rating of ${rating}`} className="star-rating">
     <span className="stars stars--empty" />
     <span
       style={{ width: calculateRatingWidth(rating) }}

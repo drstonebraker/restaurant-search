@@ -1,14 +1,21 @@
 html {
   font-size: 10px;
   font-family: Helvetica, Arial, sans-serif;
+  overflow: hidden;
 }
 
 body {
   background-image: url('./resources/graphics/background.png');
-  background-attachment: fixed
+  background-attachment: fixed;
+  overflow-y: auto;
 }
 
 button {
   border: none;
   background-color: transparent;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
 }

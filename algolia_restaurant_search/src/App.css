@@ -196,15 +196,21 @@ input[type=button] {
 
 html {
   font-size: 10px;
-  font-family: Helvetica, Arial, sans-serif; }
+  font-family: Helvetica, Arial, sans-serif;
+  overflow: hidden; }
 
 body {
   background-image: url("./resources/graphics/background.png");
-  background-attachment: fixed; }
+  background-attachment: fixed;
+  overflow-y: auto; }
 
 button {
   border: none;
   background-color: transparent; }
+
+a {
+  color: unset;
+  text-decoration: none; }
 
 .header {
   background: #1C688E;
@@ -313,8 +319,12 @@ button {
   color: #9a9a9a;
   font-weight: 300; }
 
+.star-rating {
+  position: relative;
+  vertical-align: baseline;
+  height: 1.5rem; }
+
 .stars {
-  margin: 0.2rem 1.1rem;
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -335,7 +345,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 3rem 2.4rem 1.7rem 23.9rem;
+  padding: 3rem 2.4rem 1.7rem 23.1rem;
   width: 100%;
   box-sizing: border-box;
   height: 100%; }
@@ -347,6 +357,7 @@ button {
   color: #333;
   background-color: white;
   padding-right: 2rem;
+  padding-left: 0.8rem;
   z-index: 1; }
 
 .results__count {
@@ -356,6 +367,7 @@ button {
   font-size: 1.2rem; }
 
 .results__list {
+  padding: 1.2rem 0;
   margin-top: -1px;
   border-top: 1px solid #e6e6e6;
   z-index: 0; }
@@ -375,6 +387,38 @@ button {
   color: rgba(0, 0, 0, 0.5); }
   .results__expand-btn:active {
     box-shadow: inset 0 0.2rem 0.3rem rgba(0, 0, 0, 0.1); }
+
+.results-item {
+  display: block;
+  padding: 0.8rem;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  border: 1px solid transparent;
+  margin: 0.3rem 0; }
+  .results-item:hover {
+    background-color: #c6e6f3;
+    border: 1px solid #71c1e2; }
+
+.results-item__img {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 0.4rem; }
+
+.results-item__info {
+  display: inline-block;
+  margin-left: 1.7rem;
+  vertical-align: top; }
+
+.results-item__name {
+  line-height: 1.9rem;
+  font-size: 1.6rem; }
+
+.results-item__rating {
+  color: #FFAB66;
+  line-height: 2rem;
+  font-size: 1.4rem;
+  vertical-align: middle;
+  margin-right: 0.4rem; }
 
 .view--collapsed {
   height: 80vh; }
