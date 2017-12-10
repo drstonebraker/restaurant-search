@@ -5,13 +5,15 @@ import Sidebar from './Sidebar';
 import Results from './Results';
 
 const Content = ({
-  isExpanded, selectedFacets, currentResults, handleFilterClick, handleExpand
+  isExpanded, selectedFacets, currentResults, handleFilterClick, handleExpand,
+  isSidebarOpen
 }) => (
   <div id="content" className="content">
     <Sidebar
       facets={currentResults.facets}
       selectedFacets={selectedFacets}
       handleFilterClick={handleFilterClick}
+      isSidebarOpen={isSidebarOpen}
     />
     <Results
       currentResults={currentResults}
@@ -40,6 +42,7 @@ Content.propTypes = {
   handleFilterClick: PropTypes.func.isRequired,
   isExpanded: PropTypes.bool.isRequired,
   handleExpand: PropTypes.func.isRequired,
+  isSidebarOpen: PropTypes.bool.isRequired,
 };
 
 export default Content;

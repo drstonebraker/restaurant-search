@@ -5,9 +5,11 @@ import PropTypes from "prop-types";
 
 import MenuButton from './MenuButton';
 
-const Header = ({ setRef, onChange }) => (
+const Header = ({
+  setRef, onChange, handleOpenSidebar
+}) => (
   <header id="header" className="header" ref={setRef}>
-    <MenuButton />
+    <MenuButton onClick={handleOpenSidebar} />
     <input
       autoFocus
       type="text"
@@ -20,7 +22,8 @@ const Header = ({ setRef, onChange }) => (
 
 Header.propTypes = {
   setRef: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  handleOpenSidebar: PropTypes.func.isRequired,
 };
 
 export default Header;

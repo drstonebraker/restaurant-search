@@ -27,6 +27,7 @@ class App extends Component {
       clientLocation: false,
       currentResults: undefined,
       isExpanded: false,
+      isSidebarOpen: false,
       selectedFacets: {
         food_type: {
           Italian: false,
@@ -65,6 +66,8 @@ class App extends Component {
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.getSearchResults = this.getSearchResults.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
+    this.handleOpenSidebar = this.handleOpenSidebar.bind(this);
+    this.handleCloseSidebar = this.handleCloseSidebar.bind(this);
   }
 
   componentDidMount() {
@@ -155,6 +158,18 @@ class App extends Component {
     }
   }
 
+  handleOpenSidebar() {
+    if (!this.state.isSidebarOpen) {
+      this.setState({ isSidebarOpen: true });
+      document.body.addEventListener('click', this.handleCloseSidebar);
+    }
+  }
+
+  handleCloseSidebar(e) {
+    // this.setState({ isSidebarOpen: false });
+    console.log(e)
+  }
+
   updateFilter() {
     const facets = Object.keys(this.state.selectedFacets);
 
@@ -168,7 +183,9 @@ class App extends Component {
   }
 
   render() {
-    const { selectedFacets, currentResults, isExpanded } = this.state;
+    const {
+      selectedFacets, currentResults, isExpanded, isSidebarOpen
+    } = this.state;
 
     return (
       <div
@@ -178,6 +195,7 @@ class App extends Component {
         <Header
           setRef={(header) => { this.header = header; }}
           onChange={this.handleSearchInput}
+          handleOpenSidebar={this.handleOpenSidebar}
         />
         <Content
           selectedFacets={selectedFacets}
@@ -185,6 +203,7 @@ class App extends Component {
           handleFilterClick={this.handleFilterClick}
           isExpanded={isExpanded}
           handleExpand={this.handleExpand}
+          isSidebarOpen={isSidebarOpen}
         />
       </div>
     );

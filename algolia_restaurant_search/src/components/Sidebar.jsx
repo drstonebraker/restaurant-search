@@ -3,8 +3,16 @@ import PropTypes from "prop-types";
 
 import SidebarSection from "./SidebarSection";
 
-const Sidebar = ({ facets, selectedFacets, handleFilterClick }) => (
-  <aside id="sidebar" className="sidebar">
+const Sidebar = ({
+  facets, selectedFacets, handleFilterClick, isSidebarOpen
+}) => (
+  <aside
+    id="sidebar"
+    className={`
+      sidebar
+      ${isSidebarOpen ? 'sidebar--open' : ''}
+    `}
+  >
     <SidebarSection
       heading="Cuisine/Food Type"
       selectedItems={selectedFacets.food_type}
@@ -41,6 +49,7 @@ Sidebar.propTypes = {
   selectedFacets: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool))
     .isRequired,
   handleFilterClick: PropTypes.func.isRequired,
+  isSidebarOpen: PropTypes.bool.isRequired,
 };
 
 export default Sidebar;

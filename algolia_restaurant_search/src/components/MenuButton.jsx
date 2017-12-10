@@ -45,7 +45,6 @@ const MenuButton = ({ onClick }) => (
 
 MenuButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  isMenuOpen: PropTypes.bool.isRequired
 };
 
 export default MenuButton;
