@@ -6,6 +6,10 @@
   width: 100%;
   box-sizing: border-box;
   min-height: calc(80vh - 8.3rem);
+
+  @include phone {
+    padding-left: 2.4rem;
+  }
 }
 
 .results__info {

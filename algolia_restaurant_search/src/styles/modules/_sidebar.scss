@@ -9,13 +9,35 @@
   border-right: 1px solid #E6E6E6;
   overflow: hidden;
   padding: 3rem 2.3rem;
+  background-color: white;
+  z-index: 20;
 
   &:hover {
     @include scrollable_light_bg;
     padding-right: 1.1rem;
   }
 
+  @include phone {
+    position: fixed;
+    top: 8.3rem;
+    left: 0rem;
+  }
 }
+
+.menu_button {
+  display: none;
+
+  @include phone {
+    display: inline-block;
+    position: absolute;
+    top: 0rem;
+    left: 20.7rem;
+    height: 3rem;
+    width: 3rem;
+    background-color: red;
+  }
+}
+
 
 .sidebar-section__list {
   cursor: pointer;

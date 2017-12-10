@@ -264,7 +264,9 @@ a {
   width: 20.7rem;
   border-right: 1px solid #E6E6E6;
   overflow: hidden;
-  padding: 3rem 2.3rem; }
+  padding: 3rem 2.3rem;
+  background-color: white;
+  z-index: 20; }
   .sidebar:hover {
     overflow-y: auto;
     padding-right: 1.1rem; }
@@ -279,6 +281,23 @@ a {
       border: 0.3rem solid white;
       border-radius: 0.6rem;
       background-color: #D9D9DE; }
+  @media (max-width: 867px) {
+    .sidebar {
+      position: fixed;
+      top: 8.3rem;
+      left: 0rem; } }
+
+.menu_button {
+  display: none; }
+  @media (max-width: 867px) {
+    .menu_button {
+      display: inline-block;
+      position: absolute;
+      top: 0rem;
+      left: 20.7rem;
+      height: 3rem;
+      width: 3rem;
+      background-color: red; } }
 
 .sidebar-section__list {
   cursor: pointer; }
@@ -348,6 +367,9 @@ a {
   width: 100%;
   box-sizing: border-box;
   min-height: calc(80vh - 8.3rem); }
+  @media (max-width: 867px) {
+    .results {
+      padding-left: 2.4rem; } }
 
 .results__info {
   display: inline-block;
