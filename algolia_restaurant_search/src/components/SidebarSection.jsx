@@ -3,9 +3,19 @@ import PropTypes from "prop-types";
 
 import SidebarSectionItem from './SidebarSectionItem';
 
-const getFacetCount = (facet, facetCounts) => {
-  let sum = facetCounts[facet] || 0;
-  sum += facetCounts[`Contemporary ${facet}`] || 0;
+const getStarsFacetCount = (facetValue, starsCounts) => (
+  Object.keys(starsCounts).reduce((memo, rating) => {
+    const isRelevantRating = Math.floor(Number(rating)) === Number(facetValue);
+    const toAdd = isRelevantRating ? starsCounts[rating] : 0;
+    return memo + toAdd;
+  }, 0)
+);
+
+const getFacetCount = (facetValue, facetCounts) => {
+  if (!isNaN(facetValue)) return getStarsFacetCount(facetValue, facetCounts);
+
+  let sum = facetCounts[facetValue] || 0;
+  sum += facetCounts[`Contemporary ${facetValue}`] || 0;
   return sum;
 };
 
