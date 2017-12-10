@@ -17,3 +17,10 @@
     background-color: #D9D9DE;
   }
 }
+
+@mixin overflow-ellipses {
+  width: 100%;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}

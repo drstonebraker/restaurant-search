@@ -13,7 +13,7 @@ const createResultsItems = (hits, isExpanded) => {
   return isExpanded ? itemsList : itemsList.slice(0, 3);
 };
 
-const Results = ({ currentResults, isExpanded }) => (
+const Results = ({ currentResults, isExpanded, handleExpand }) => (
   <main id="results" className="results">
     <div>
 
@@ -35,6 +35,7 @@ const Results = ({ currentResults, isExpanded }) => (
     <button
       type="button"
       className="results__expand-btn"
+      onClick={handleExpand}
     >
       Show More
     </button>
@@ -57,6 +58,7 @@ Results.propTypes = {
     ])
   ),
   isExpanded: PropTypes.bool.isRequired,
+  handleExpand: PropTypes.func.isRequired,
 };
 
 export default Results;

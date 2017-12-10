@@ -64,6 +64,7 @@ class App extends Component {
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.getSearchResults = this.getSearchResults.bind(this);
+    this.handleExpand = this.handleExpand.bind(this);
   }
 
   componentDidMount() {
@@ -83,7 +84,10 @@ class App extends Component {
     }
   }
 
-  getSearchResults() {
+  getSearchResults(isNextPage = false) {
+    const { clientlocation, currentResults } = this.state;
+    const page = isNextPage ? currentResults.page + 1 : 0;
+
     let locationConfig;
     if (this.state.clientlocation) {
       locationConfig = { aroundLatLng: this.state.clientLocation };
@@ -102,6 +106,7 @@ class App extends Component {
       query,
       facets,
       filters,
+      page,
       ...locationConfig
     };
 
@@ -109,7 +114,11 @@ class App extends Component {
       if (err) {
         console.error("Error on search", err);
       } else {
-        this.setState({ currentResults: content }, () =>
+        if (isNextPage) {
+          content.hits = currentResults.hits.concat(content.hits);
+        }
+
+        this.setState({ currentResults: content, isExpanded: isNextPage }, () =>
           console.log(this.state)
         );
       }
@@ -135,6 +144,14 @@ class App extends Component {
     const selectedFacets = { ...this.state.selectedFacets };
     selectedFacets[facet][value] = !selectedFacets[facet][value];
     this.setState({ selectedFacets }, this.updateFilter);
+  }
+
+  handleExpand() {
+    if (this.state.isExpanded) {
+      this.getSearchResults(true);
+    } else {
+      this.setState({ isExpanded: true });
+    }
   }
 
   updateFilter() {
@@ -166,6 +183,7 @@ class App extends Component {
           currentResults={currentResults}
           handleFilterClick={this.handleFilterClick}
           isExpanded={isExpanded}
+          handleExpand={this.handleExpand}
         />
       </div>
     );

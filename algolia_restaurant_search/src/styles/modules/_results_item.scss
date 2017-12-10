@@ -5,6 +5,7 @@
   border-radius: 0.4rem;
   border: 1px solid transparent;
   margin: 0.3rem 0;
+  white-space: nowrap;
 
   &:hover {
     background-color: lighten($color: #2897C5, $amount: 40%);
@@ -20,6 +21,7 @@
 
 .results-item__info {
   display: inline-block;
+  width: calc(100% - 9.7rem);
   margin-left: 1.7rem;
   vertical-align: top;
 }
@@ -27,6 +29,7 @@
 .results-item__name {
   line-height: 1.9rem;
   font-size: 1.6rem;
+  @include overflow-ellipses;
 }
 
 .results-item__line {
@@ -53,4 +56,5 @@
   color: rgba(112,112,112,0.6);
   font-size: 1.4rem;
   font-weight: 300;
+  @include overflow-ellipses;
 }
