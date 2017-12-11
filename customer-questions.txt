@@ -1,4 +1,16 @@
-Question 1:
+> Question 1: Hello,
+>
+> I'm new to search engines, and there are a lot of concepts I'm not educated on.
+> To make my onboarding smoother, it'd help if you could provide me with some
+> definitions of the following concepts:
+>
+> - Records
+> - Indexing
+>
+> I'm also struggling with understanding what types of metrics would be useful
+> to include in the "Custom Ranking."
+>
+> Cheers, George
 
 Hello George,
 
@@ -8,7 +20,7 @@ that will make your experience with Algolia as enjoyable and efficient as possib
 Let me start by answering your question about records.
 
 When you use Algolia to search on a website, each search result that you see
-corresponds to a record.  Each record also usually has several attributes, which
+corresponds to a record. Each record also usually has several attributes, which
 contain the information about that record.
 
 For example, an e-commerce website using Algolia would likely have a record for
@@ -33,14 +45,15 @@ Now, to answer your question about metrics to use with custom ranking:
 
 When a user's search matches multiple results, Algolia uses ranking to determine
 which results should show up first in the list. Algolia has its own criteria for
-ranking, but you may also want to create your additional rules to affect this
+ranking, but you may also want to create additional rules to affect this
 process, and that is what custom ranking is for.
 
 For example, an e-commerce website may want more popular products to appear
-before less popular ones.  In this case, the website owner would need a
-popularity attribute on their records, and then set a custom ranking based on
-this attribute.  On the other hand, an image_url attribute is something that
-wouldn't make sense to add as a custom ranking.
+before less popular ones in their search results. In this case, the website
+owner would need a popularity attribute on their product records when they
+upload them, and then set a custom ranking based on this attribute. On the other
+hand, an image_url attribute is something that probably wouldn't make sense to
+add as a custom ranking.
 
 You can use any of your records' attributes to create a custom ranking, but it's
 up to you to decide which ones make sense for your purposes. You can find more
@@ -48,7 +61,7 @@ information about this here:
 https://www.algolia.com/doc/guides/ranking/ranking-formula/#custom
 
 
-Does that help?  Please don't hesitate to let me know if this doesn't fully
+Does that help? Please don't hesitate to let me know if this doesn't fully
 answer your questions, and feel free to contact us in the future if
 we can be of help again.
 
@@ -58,7 +71,14 @@ Solutions Engineer
 
 
 
-Question 2:
+> Question 2: Hello,
+>
+> Sorry to give you the kind of feedback that I know you do not want to hear,
+> but I really hate the new dashboard design. Clearing and deleting indexes are
+> now several clicks away. I am needing to use these features while iterating,
+> so this is inconvenient.
+>
+> Regards, Matt
 
 Hello Matt,
 
@@ -86,7 +106,12 @@ Solutions Engineer
 
 
 
-Question 3:
+> Question 3: Hi,
+>
+> I'm looking to integrate Algolia in my website. Will this be a lot of
+> development work for me? What's the high level process look like?
+>
+> Regards, Leo
 
 Hi Leo,
 
