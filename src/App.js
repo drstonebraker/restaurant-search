@@ -78,7 +78,8 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const prevIsSidebarOpen = prevState.isSidebarOpen;
-    const { isSidebarOpen } = this.state;
+    const prevClientLocation = prevState.clientLocation;
+    const { isSidebarOpen, clientLocation } = this.state;
 
     if (!prevIsSidebarOpen && isSidebarOpen) {
       // just opened sidebar
@@ -86,6 +87,11 @@ class App extends Component {
     } else if (prevIsSidebarOpen && !isSidebarOpen) {
       // just closed sidebar
       this.removeCloseSidebarEventListener();
+    }
+
+    if (!prevClientLocation && clientLocation) {
+      // found client location
+      this.getSearchResults();
     }
   }
 
@@ -96,17 +102,16 @@ class App extends Component {
   getClientLocation() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        const { isExpanded } = this.state;
         const clientLocation = [
           position.coords.latitude,
           position.coords.longitude
         ].join(", ");
-        this.setState({ clientLocation, isGeoLoading: false }, () => isExpanded || this.getSearchResults());
+        this.setState({ clientLocation, isGeoLoading: false });
       }, (error) => {
-        this.setState({ isGeoLoading: false })
+        this.setState({ isGeoLoading: false });
       }, { timeout: 10000 });
     } else {
-      this.setState({ isGeoLoading: false })
+      this.setState({ isGeoLoading: false });
     }
   }
 
