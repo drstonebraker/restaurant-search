@@ -6,6 +6,16 @@
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "mfg-labs-iconset_2014-07-29_placepin_192_0_1c688e_none.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "mfg-labs-iconset_2014-07-29_placepin_512_0_1c688e_none.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
   "start_url": "./index.html",
