@@ -2,13 +2,25 @@
 
 import React, { Component } from 'react';
 import algoliasearch from 'algoliasearch';
+import algoliasearchHelper from 'algoliasearch-helper';
 import './App.css';
 
 import Header from './components/Header';
 import Content from './components/Content';
 
 const client = algoliasearch("T9X7J1FO6M", "46731abd67e0a850c6deee6223e34ffe");
-const index = client.initIndex("restaurant_locator");
+const helper = algoliasearchHelper(
+  client,
+  "restaurant_locator",
+  {
+    facets: [
+      "food_type",
+      "payment_options",
+      "price_range",
+      "stars_count"
+    ]
+  }
+);
 
 class App extends Component {
   static getFacetValueFilter(facet, value) {
@@ -80,6 +92,7 @@ class App extends Component {
   componentDidMount() {
     this.getSearchResults();
     this.getClientLocation();
+    this.addHelperListener();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -130,24 +143,38 @@ class App extends Component {
 
     const config = this.buildSearchConfig(isNextPage);
 
-    index.search(config, (err, content) => {
-      if (err) {
-        console.error("Error on search", err);
-      } else {
-        if (isNextPage) {
-          content.hits = currentResults.hits.concat(content.hits);
-        }
+    // index.search(config, (err, content) => {
+    //   if (err) {
+    //     console.error("Error on search", err);
+    //   } else {
+    //     if (isNextPage) {
+    //       content.hits = currentResults.hits.concat(content.hits);
+    //     }
 
-        this.setState({ currentResults: content, isExpanded: isNextPage }, () => {
-          console.log(this.state);
-        });
-      }
-    });
+    //     this.setState({ currentResults: content, isExpanded: isNextPage }, () => {
+    //       console.log(this.state);
+    //     });
+    //   }
+    // });
+
+    helper.setQuery(this.query).search();
   }
 
   // ***********************
   // extracted logic methods
   // ***********************
+
+  addHelperListener() {
+    helper.on('result', (content) => {
+      // if (isNextPage) {
+      //   content.hits = currentResults.hits.concat(content.hits);
+      // }
+
+      this.setState({ currentResults: content /*, isExpanded: isNextPage */ }, () => {
+        console.log(this.state);
+      });
+    });
+  }
 
   buildSearchConfig(isNextPage) {
     const { clientLocation, currentResults } = this.state;

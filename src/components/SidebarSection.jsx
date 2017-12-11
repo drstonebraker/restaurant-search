@@ -12,6 +12,7 @@ const getStarsFacetCount = (facetValue, starsCounts) => (
 );
 
 const getFacetCount = (facetValue, facetCounts) => {
+  console.log(facetValue, facetCounts);
   if (!isNaN(facetValue)) return getStarsFacetCount(facetValue, facetCounts);
 
   let sum = facetCounts[facetValue] || 0;
