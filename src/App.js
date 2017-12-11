@@ -15,6 +15,8 @@ class App extends Component {
     switch (facet) {
       case "stars_count":
         return `${facet}: ${value} TO ${Number(value) + 0.9}`;
+      case "food_type":
+        return `${facet}:"${value}" OR ${facet}:"Contemporary ${value}"`
       default:
         return `${facet}:"${value}"`;
     }
@@ -192,7 +194,7 @@ class App extends Component {
     const filters = selected.map(value => App.getFacetValueFilter(facet, value));
 
     const joinedFilters = filters.join(" OR ");
-    return filters.length > 1 ? `(${joinedFilters})` : joinedFilters;
+    return joinedFilters.includes(' OR ') ? `(${joinedFilters})` : joinedFilters;
   }
 
   removeCloseSidebarEventListener() {
