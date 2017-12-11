@@ -321,7 +321,8 @@ a {
   border-radius: 0.3rem;
   width: 16rem;
   margin: 0.1rem 0; }
-  .sidebar-section-item:hover {
+  .sidebar-section-item:hover, .sidebar-section-item:focus {
+    outline: 0;
     background-color: #c6e6f3; }
   .sidebar-section-item--selected {
     background-color: #2897C5 !important; }
@@ -433,6 +434,9 @@ a {
   .results-item:hover, .results-item:focus {
     background-color: #c6e6f3;
     border: 1px solid #71c1e2; }
+    @media (min-width: 1024px) {
+      .results-item:hover, .results-item:focus {
+        outline: 0; } }
   @media (max-width: 767px) {
     .results-item:hover, .results-item:focus {
       background-color: unset;
