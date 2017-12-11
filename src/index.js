@@ -2,9 +2,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import stickybits from 'stickybits';
+
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import stickybits from 'stickybits';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
