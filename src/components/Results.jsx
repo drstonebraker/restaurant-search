@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import ResultsItem from './ResultsItem';
+import GeoLoader from './GeoLoader';
 
 const createResultsItems = (hits, isExpanded) => {
   if (!hits) return [];
@@ -24,7 +25,9 @@ const isFullResults = (currentResults, isExpanded) => {
   return null;
 };
 
-const Results = ({ currentResults, isExpanded, handleExpand }) => (
+const Results = ({
+  currentResults, isExpanded, handleExpand, isGeoLoading
+}) => (
   <main id="results" className="results">
     <div>
 
@@ -44,14 +47,18 @@ const Results = ({ currentResults, isExpanded, handleExpand }) => (
     </div>
 
     {
-      !isFullResults(currentResults, isExpanded) &&
-      <button
-        type="button"
-        className="results__expand-btn"
-        onClick={handleExpand}
-      >
-        Show More
-      </button>
+      isGeoLoading ? (
+        <GeoLoader />
+      ) : (
+        !isFullResults(currentResults, isExpanded) &&
+        <button
+          type="button"
+          className="results__expand-btn"
+          onClick={handleExpand}
+        >
+          Show More
+        </button>
+      )
     }
 
   </main>
@@ -72,6 +79,7 @@ Results.propTypes = {
     ])
   ),
   isExpanded: PropTypes.bool.isRequired,
+  isGeoLoading: PropTypes.bool.isRequired,
   handleExpand: PropTypes.func.isRequired,
 };
 

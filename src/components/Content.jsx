@@ -6,7 +6,7 @@ import Results from './Results';
 
 const Content = ({
   isExpanded, selectedFacets, currentResults, handleFilterClick, handleExpand,
-  isSidebarOpen
+  isSidebarOpen, isGeoLoading
 }) => (
   <div id="content" className="content">
     <Sidebar
@@ -19,6 +19,7 @@ const Content = ({
       currentResults={currentResults}
       isExpanded={isExpanded}
       handleExpand={handleExpand}
+      isGeoLoading={isGeoLoading}
     />
   </div>
 );
@@ -43,6 +44,7 @@ Content.propTypes = {
   isExpanded: PropTypes.bool.isRequired,
   handleExpand: PropTypes.func.isRequired,
   isSidebarOpen: PropTypes.bool.isRequired,
+  isGeoLoading: PropTypes.bool.isRequired,
 };
 
 export default Content;

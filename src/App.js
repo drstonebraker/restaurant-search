@@ -26,6 +26,7 @@ class App extends Component {
     this.state = {
       clientLocation: false,
       currentResults: undefined,
+      isGeoLoading: true,
       isExpanded: false,
       isSidebarOpen: false,
       selectedFacets: {
@@ -100,8 +101,12 @@ class App extends Component {
           position.coords.latitude,
           position.coords.longitude
         ].join(", ");
-        this.setState({ clientLocation }, () => isExpanded || this.getSearchResults());
+        this.setState({ clientLocation, isGeoLoading: false }, () => isExpanded || this.getSearchResults());
+      }, (error) => {
+        this.setState({ isGeoLoading: false })
       });
+    } else {
+      this.setState({ isGeoLoading: false })
     }
   }
 
@@ -209,7 +214,7 @@ class App extends Component {
 
   render() {
     const {
-      selectedFacets, currentResults, isExpanded, isSidebarOpen
+      selectedFacets, currentResults, isExpanded, isSidebarOpen, isGeoLoading
     } = this.state;
 
     return (
@@ -229,6 +234,7 @@ class App extends Component {
           isExpanded={isExpanded}
           handleExpand={this.handleExpand}
           isSidebarOpen={isSidebarOpen}
+          isGeoLoading={isGeoLoading}
         />
       </div>
     );
