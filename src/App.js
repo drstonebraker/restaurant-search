@@ -142,7 +142,9 @@ class App extends Component {
           content.hits = currentResults.hits.concat(content.hits);
         }
 
-        this.setState({ currentResults: content, isExpanded: isNextPage });
+        this.setState({ currentResults: content, isExpanded: isNextPage }, () => {
+          console.log(this.state);
+        });
       }
     });
   }
