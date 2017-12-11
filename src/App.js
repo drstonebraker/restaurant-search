@@ -26,6 +26,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      query: '',
       clientLocation: false,
       currentResults: undefined,
       isGeoLoading: true,
@@ -62,7 +63,6 @@ class App extends Component {
       }
     };
 
-    this.query = "";
     this.filters = "";
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -85,7 +85,8 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const prevIsSidebarOpen = prevState.isSidebarOpen;
     const prevClientLocation = prevState.clientLocation;
-    const { isSidebarOpen, clientLocation } = this.state;
+    const prevQuery = prevState.query;
+    const { isSidebarOpen, clientLocation, query } = this.state;
 
     if (!prevIsSidebarOpen && isSidebarOpen) {
       // just opened sidebar
@@ -97,6 +98,10 @@ class App extends Component {
 
     if (!prevClientLocation && clientLocation) {
       // found client location
+      this.getSearchResults();
+    }
+
+    if (prevQuery !== query) {
       this.getSearchResults();
     }
   }
@@ -150,7 +155,7 @@ class App extends Component {
   // ***********************
 
   buildSearchConfig(isNextPage) {
-    const { clientLocation, currentResults } = this.state;
+    const { clientLocation, currentResults, query } = this.state;
     const page = isNextPage ? currentResults.page + 1 : 0;
 
     let locationConfig;
@@ -165,7 +170,7 @@ class App extends Component {
       "price_range",
       "stars_count"
     ];
-    const { filters, query } = this;
+    const { filters } = this;
 
     const config = {
       query,
@@ -208,8 +213,7 @@ class App extends Component {
   // ***********************
 
   handleSearchInput(e) {
-    this.query = e.target.value;
-    this.getSearchResults();
+    this.setState({ query: e.target.value });
   }
 
   handleFilterClick(facet, value) {
@@ -247,7 +251,8 @@ class App extends Component {
 
   render() {
     const {
-      selectedFacets, currentResults, isExpanded, isSidebarOpen, isGeoLoading
+      selectedFacets, currentResults, isExpanded, isSidebarOpen, isGeoLoading,
+      query
     } = this.state;
 
     return (
@@ -259,6 +264,7 @@ class App extends Component {
           setRef={(header) => { this.header = header; }}
           onChange={this.handleSearchInput}
           handleOpenSidebar={this.handleOpenSidebar}
+          query={query}
         />
         <Content
           selectedFacets={selectedFacets}
