@@ -323,8 +323,8 @@ a {
       color: white; }
   @media (max-width: 867px) {
     .sidebar-section-item {
-      padding-top: 0.8rem;
-      padding-bottom: 0.8rem; } }
+      padding-top: 1.2rem;
+      padding-bottom: 1.2rem; } }
 
 .sidebar-section-item__type {
   font-size: 1.3rem; }
