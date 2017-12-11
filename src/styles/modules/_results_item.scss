@@ -7,9 +7,24 @@
   margin: 0.3rem 0;
   white-space: nowrap;
 
-  &:hover {
+  @mixin blue-highlight {
     background-color: lighten($color: #2897C5, $amount: 40%);
     border: 1px solid lighten($color: #2897C5, $amount: 20%);
+  }
+
+  &:hover, &:focus {
+    @include blue-highlight;
+  }
+
+  @include phone {
+    &:hover {
+      background-color: unset;
+      border: 1px solid transparent;
+    }
+
+    &:active {
+      @include blue-highlight;
+    }
   }
 }
 

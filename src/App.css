@@ -420,9 +420,16 @@ a {
   border: 1px solid transparent;
   margin: 0.3rem 0;
   white-space: nowrap; }
-  .results-item:hover {
+  .results-item:hover, .results-item:focus {
     background-color: #c6e6f3;
     border: 1px solid #71c1e2; }
+  @media (max-width: 867px) {
+    .results-item:hover {
+      background-color: unset;
+      border: 1px solid transparent; }
+    .results-item:active {
+      background-color: #c6e6f3;
+      border: 1px solid #71c1e2; } }
 
 .results-item__img {
   height: 8rem;
