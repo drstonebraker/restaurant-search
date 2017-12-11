@@ -26,10 +26,16 @@
 
   @include tablet {
     @include large-buttons;
+    &:hover {
+      background-color: transparent;
+    }
   }
 
   @include phone {
     @include large-buttons;
+    &:hover {
+      background-color: transparent;
+    }
   }
 }
 
