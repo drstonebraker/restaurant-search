@@ -136,9 +136,7 @@ class App extends Component {
           content.hits = currentResults.hits.concat(content.hits);
         }
 
-        this.setState({ currentResults: content, isExpanded: isNextPage }, () =>
-          console.log(this.state)
-        );
+        this.setState({ currentResults: content, isExpanded: isNextPage });
       }
     });
   }
@@ -184,7 +182,6 @@ class App extends Component {
       .filter(filter => filter.length > 0);
 
     this.filters = filters.join(" AND ");
-    console.log(this.filters);
     this.getSearchResults();
   }
 
