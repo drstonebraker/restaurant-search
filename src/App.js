@@ -104,7 +104,7 @@ class App extends Component {
         this.setState({ clientLocation, isGeoLoading: false }, () => isExpanded || this.getSearchResults());
       }, (error) => {
         this.setState({ isGeoLoading: false })
-      });
+      }, { timeout: 10000 });
     } else {
       this.setState({ isGeoLoading: false })
     }
