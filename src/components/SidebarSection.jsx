@@ -36,7 +36,7 @@ const SidebarSection = ({
   facetCounts,
   handleFilterClick
 }) => (
-  <div id="sidebar-section" className="sidebar-section">
+  <div className="sidebar-section">
     <h6 className="sidebar-section__heading">{heading}</h6>
     <ul className="sidebar-section__list">
       {createSectionItems(selectedItems, facetCounts, handleFilterClick)}

@@ -17,6 +17,7 @@ const Header = ({
       placeholder="Search for Restaurants by Name, Cuisine, Location"
       onChange={onChange}
       value={query}
+      aria-label="Search for restaurants"
     />
   </header>
 );

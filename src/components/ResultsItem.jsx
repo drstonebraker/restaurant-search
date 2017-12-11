@@ -17,6 +17,7 @@ const ResultsItem = ({ restaurant }) => (
     <a
       href={isMobile ? restaurant.mobile_reserve_url : restaurant.reserve_url}
       target="_blank"
+      rel="noopener"
       className="results-item"
     >
       <img
