@@ -41,10 +41,25 @@
   line-height: 1.9rem;
   font-size: 1.6rem;
   @include overflow-ellipses;
+
+  @include phone {
+    line-height: unset;
+  }
 }
 
 .results-item__line {
   margin-top: 0.7rem;
+
+  @include phone {
+    margin-top: 0rem;
+  }
+}
+
+.results-item__line--description {
+  color: rgba(112,112,112,0.6);
+  font-size: 1.4rem;
+  font-weight: 300;
+  @include overflow-ellipses;
 }
 
 .results-item__rating {
@@ -53,6 +68,10 @@
   font-size: 1.4rem;
   vertical-align: middle;
   margin-right: 0.8rem;
+
+  @include phone {
+    line-height: unset;
+  }
 }
 
 .results-item__review-count {
@@ -63,9 +82,13 @@
   font-weight: 300;
 }
 
-.results-item__description {
-  color: rgba(112,112,112,0.6);
-  font-size: 1.4rem;
-  font-weight: 300;
-  @include overflow-ellipses;
+@include phone {
+  .description-item {
+    display: block;
+    font-size: 1.2rem;
+  }
+
+  .description-pipe {
+    display: none;
+  }
 }
