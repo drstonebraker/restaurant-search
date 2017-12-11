@@ -16,11 +16,7 @@ class App extends Component {
       case "stars_count":
         return `${facet}: ${value} TO ${Number(value) + 0.9}`;
       case "food_type":
-        return `${facet}:"${value}" OR ${facet}:"Contemporary ${value}"`
-      case "payment_options":
-        if (value === 'Discover') {
-          return `${facet}:"${value}" OR ${facet}:"Diners Club" OR ${facet}:"Carte Blanche"`;
-        }
+        return `${facet}:"${value}" OR ${facet}:"Contemporary ${value}"`;
       default:
         return `${facet}:"${value}"`;
     }

@@ -24,7 +24,6 @@ def delete_unneeded_keys(restaurant)
   restaurant.reject do |key, val|
     %w(
       address
-      city
       area
       country
       phone
@@ -35,6 +34,19 @@ def delete_unneeded_keys(restaurant)
       dining_style
     ).include?(key)
   end
+end
+
+def clean_payment_options(restaurant)
+  payment_options = restaurant['payment_options'].dup;
+
+  mapped_to_discover = payment_options.map do |option|
+    ['Carte Blanche', 'Diners Club'].include?(option) ? 'Discover' : option
+  end
+
+  filtered = %w(AMEX Discover MasterCard Visa) & mapped_to_discover
+
+  restaurant['payment_options'] = filtered
+  restaurant
 end
 
 json_filepath = File.join(File.dirname(__FILE__), 'restaurants_list.json')
@@ -50,6 +62,7 @@ CSV.foreach(csv_filepath, headers: true, col_sep: ';') do |row|
 
   restaurants_list[id] = delete_unneeded_keys(restaurants_list[id])
   restaurants_list[id] = convert_review_strs_to_ints(restaurants_list[id])
+  restaurants_list[id] = clean_payment_options(restaurants_list[id])
 end
 
 write_filepath = File.join(File.dirname(__FILE__), 'full_restaurants_info.json')
