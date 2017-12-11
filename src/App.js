@@ -186,6 +186,7 @@ class App extends Component {
   }
 
   handleCloseSidebar(e) {
+    e.stopPropagation();
     e.preventDefault();
     const sidebar = document.getElementById('sidebar');
 

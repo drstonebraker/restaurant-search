@@ -434,7 +434,7 @@ a {
     background-color: #c6e6f3;
     border: 1px solid #71c1e2; }
   @media (max-width: 867px) {
-    .results-item:hover {
+    .results-item:hover, .results-item:focus {
       background-color: unset;
       border: 1px solid transparent; } }
 
@@ -502,3 +502,7 @@ a {
 
 .sidebar--open {
   transform: translateX(0%); }
+  @media (max-width: 867px) {
+    .sidebar--open + .results .results-item {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-tap-highlight-color: transparent; } }

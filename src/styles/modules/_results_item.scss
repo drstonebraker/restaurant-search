@@ -17,7 +17,7 @@
   }
 
   @include phone {
-    &:hover {
+    &:hover, &:focus {
       background-color: unset;
       border: 1px solid transparent;
     }

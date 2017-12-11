@@ -1,3 +1,10 @@
 .sidebar--open {
   transform: translateX(0%);
+
+  @include phone {
+    & + .results .results-item {
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
 }
