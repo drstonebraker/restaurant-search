@@ -32,12 +32,17 @@ const Results = ({
     <div>
 
       <div className="results__info">
-        <span className="results__count">
-          { currentResults.nbHits } results found{' '}
-        </span>
-        <span className="results__speed">
-          in { currentResults.processingTimeMS / 1000 } seconds
-        </span>
+        {
+          Object.keys(currentResults).length > 0 &&
+          <span>
+            <span className="results__count">
+              { currentResults.nbHits } results found{' '}
+            </span>
+            <span className="results__speed">
+              in { currentResults.processingTimeMS / 1000 } seconds
+            </span>
+          </span>
+        }
       </div>
 
       <ul className="results__list">
