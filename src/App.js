@@ -71,6 +71,10 @@ class App extends Component {
     this.handleCloseSidebar = this.handleCloseSidebar.bind(this);
   }
 
+  // ***********************
+  // React lifecycle methods
+  // ***********************
+
   componentDidMount() {
     this.getSearchResults();
     this.getClientLocation();
@@ -99,6 +103,10 @@ class App extends Component {
     this.removeCloseSidebarEventListener();
   }
 
+  // ***********************
+  // getter methods
+  // ***********************
+
   getClientLocation() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -116,6 +124,30 @@ class App extends Component {
   }
 
   getSearchResults(isNextPage = false) {
+    const { currentResults } = this.state;
+
+    const config = this.buildSearchConfig(isNextPage);
+
+    index.search(config, (err, content) => {
+      if (err) {
+        console.error("Error on search", err);
+      } else {
+        if (isNextPage) {
+          content.hits = currentResults.hits.concat(content.hits);
+        }
+
+        this.setState({ currentResults: content, isExpanded: isNextPage }, () =>
+          console.log(this.state)
+        );
+      }
+    });
+  }
+
+  // ***********************
+  // extracted logic methods
+  // ***********************
+
+  buildSearchConfig(isNextPage) {
     const { clientLocation, currentResults } = this.state;
     const page = isNextPage ? currentResults.page + 1 : 0;
 
@@ -141,22 +173,22 @@ class App extends Component {
       ...locationConfig
     };
 
-    index.search(config, (err, content) => {
-      if (err) {
-        console.error("Error on search", err);
-      } else {
-        if (isNextPage) {
-          content.hits = currentResults.hits.concat(content.hits);
-        }
-
-        this.setState({ currentResults: content, isExpanded: isNextPage }, () =>
-          console.log(this.state)
-        );
-      }
-    });
+    return config;
   }
 
-  getFacetFilter(facet) {
+  updateFilter() {
+    const facets = Object.keys(this.state.selectedFacets);
+
+    const filters = facets
+      .map(facet => this.buildFacetFilter(facet))
+      .filter(filter => filter.length > 0);
+
+    this.filters = filters.join(" AND ");
+    console.log(this.filters);
+    this.getSearchResults();
+  }
+
+  buildFacetFilter(facet) {
     const facetValues = this.state.selectedFacets[facet];
 
     const selected = Object.keys(facetValues).filter(value => facetValues[value]);
@@ -169,6 +201,10 @@ class App extends Component {
   removeCloseSidebarEventListener() {
     document.body.removeEventListener('click', this.handleCloseSidebar);
   }
+
+  // ***********************
+  // event handlers
+  // ***********************
 
   handleSearchInput(e) {
     this.query = e.target.value;
@@ -205,17 +241,9 @@ class App extends Component {
     }
   }
 
-  updateFilter() {
-    const facets = Object.keys(this.state.selectedFacets);
-
-    const filters = facets
-      .map(facet => this.getFacetFilter(facet))
-      .filter(filter => filter.length > 0);
-
-    this.filters = filters.join(" AND ");
-    console.log(this.filters);
-    this.getSearchResults();
-  }
+  // ***********************
+  // render
+  // ***********************
 
   render() {
     const {
