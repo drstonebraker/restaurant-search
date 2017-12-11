@@ -1,23 +1,87 @@
 Question 1:
 
-Hi George,
+Hello George,
 
-Thanks for reaching out. We're always more than happy to help with anything that
+Thank you for reaching out. We're always more than happy to help with anything that
 will make your experience with Algolia as enjoyable and efficient as possible.
 
-Regarding definitions
+Let me start by answering your question about records.
 
-Records
-Indexing
+When you use Algolia to search on a website, each search result that you see corresponds to a record.  Each record also usually has several attributes, which contain the information about that record.
 
-Does that make sense?
+For example, an e-commerce website using Algolia would likely have a record for each of their products, with attributes like name, price, size, etc.  Alternatively, a real estate website would probably have a record for each property, with attributes like address, price, number of bedrooms, etc.
 
-To answer your question about metrics to use with custom ranking:
+When you use Algolia for your website, it's up to you to upload your own records (more on this in a bit) so that we can integrate them into the search feature.
+
+When you upload a set of records to Algolia, the collection gets stored in what's called an index. The process of Algolia turning your uploaded data into a set of records (made highly optimized for search) is what we call indexing.
+
+You must create an index before you'll be able to take advantage of Algolia's search functionality. See the url below for different methods you can use to upload an index:
+https://www.algolia.com/doc/guides/indexing/indexing-overview/
+
+
+Now, to answer your question about metrics to use with custom ranking:
+
+When a user's search matches multiple results, Algolia uses ranking to determine which results should show up first in the list. Algolia has its own criteria for ranking, but you may also want to create your additional rules to affect this process, and that is what custom ranking is for.
+
+For example, an e-commerce website may want more popular products to appear before less popular ones.  In this case, the website owner would need a popularity attribute on their records, and then set a custom ranking based on this attribute.  On the other hand, an image_url attribute is something that wouldn't make sense to add as a custom ranking. 
+
+You can use any of your records' attributes to create a custom ranking, but it's up to you to decide which ones make sense for your purposes. You can find more information about this here: https://www.algolia.com/doc/guides/ranking/ranking-formula/#custom
+
 
 Does that help?  Please don't hesitate to let me know if this doesn't fully
-answer your questions, and always feel free to contact us again in the future if
+answer your questions, and feel free to contact us in the future if
 we can be of help again.
 
 Best regards,
 Drew Stonebraker
 Solutions Engineer
+
+
+
+Question 2:
+
+Hello Matt,
+
+We are always thrilled to hear feedback about ways we can improve our product, and genuinely appreciate you taking the time to share your experience.
+
+I'm so sorry that the updated design hasn't been as helpful to you as we had hoped. We aspire to create the best experience possible for all of our clients, and will look into what we can do to make clearing and deleting indexes more convenient.
+
+While I can't immediately change the dashboard design, here are two guides on some of the other tools we have for keeping your indexes up-to-date throughout your iteration process, in case you may find them helpful:
+
+https://www.algolia.com/doc/guides/indexing/synchronization/
+https://www.algolia.com/doc/guides/indexing/updates-strategy/
+
+Please continue to feel free to share any feedback that will help us serve you, and let me know if I can be of any further assistence.
+
+Best regards,
+Drew Stonebraker
+Solutions Engineer
+
+
+
+Question 3:
+
+Hi Leo,
+
+It's great to hear that your considering Algolia!
+
+We've put a lot of work into making integration exceptionally quick and easy, and you can actually be receiving search results from our servers in a matter of minutes.
+
+The basic steps for getting started are:
+1) Upload your data to Algolia's servers for indexing
+2) Define which attributes you want to make searchable
+3) Install the Algolia client in your own application
+4) Send a query!
+
+For a 3-minute tutorial on steps 1 and 2, check out this walkthrough:
+https://www.algolia.com/getstarted
+
+Once you're ready to install the client, check out our API client documentation, which will walk you through the rest of steps to get up and running on your website:
+https://www.algolia.com/doc/api-client/javascript/getting-started/
+
+Please let me know if I can be of any further assistance.
+
+Best regards,
+Drew Stonebraker
+Solutions Engineer
+
