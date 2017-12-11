@@ -83,27 +83,9 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const prevIsSidebarOpen = prevState.isSidebarOpen;
-    const prevClientLocation = prevState.clientLocation;
-    const prevQuery = prevState.query;
-    const { isSidebarOpen, clientLocation, query } = this.state;
-
-    if (!prevIsSidebarOpen && isSidebarOpen) {
-      // just opened sidebar
-      document.body.addEventListener('click', this.handleCloseSidebar);
-    } else if (prevIsSidebarOpen && !isSidebarOpen) {
-      // just closed sidebar
-      this.removeCloseSidebarEventListener();
-    }
-
-    if (!prevClientLocation && clientLocation) {
-      // found client location
-      this.getSearchResults();
-    }
-
-    if (prevQuery !== query) {
-      this.getSearchResults();
-    }
+    this.checkQueryUpdate(prevState);
+    this.checkLocationUpdate(prevState);
+    this.checkSidebarUpdate(prevState);
   }
 
   componentWillUnmount() {
@@ -148,6 +130,42 @@ class App extends Component {
         });
       }
     });
+  }
+
+  // ***********************
+  // update methods
+  // ***********************
+
+  checkQueryUpdate(prevState) {
+    const prevQuery = prevState.query;
+    const { query } = this.state;
+
+    if (prevQuery !== query) {
+      this.getSearchResults();
+    }
+  }
+
+  checkLocationUpdate(prevState) {
+    const prevClientLocation = prevState.clientLocation;
+    const { clientLocation } = this.state;
+
+    if (!prevClientLocation && clientLocation) {
+      // found client location
+      this.getSearchResults();
+    }
+  }
+
+  checkSidebarUpdate(prevState) {
+    const prevIsSidebarOpen = prevState.isSidebarOpen;
+    const { isSidebarOpen } = this.state;
+
+    if (!prevIsSidebarOpen && isSidebarOpen) {
+      // just opened sidebar
+      document.body.addEventListener('click', this.handleCloseSidebar);
+    } else if (prevIsSidebarOpen && !isSidebarOpen) {
+      // just closed sidebar
+      this.removeCloseSidebarEventListener();
+    }
   }
 
   // ***********************
