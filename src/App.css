@@ -504,5 +504,6 @@ a {
   transform: translateX(0%); }
   @media (max-width: 867px) {
     .sidebar--open + .results .results-item {
+      cursor: default;
       -webkit-tap-highlight-color: transparent;
       -webkit-tap-highlight-color: transparent; } }
