@@ -121,11 +121,12 @@ class App extends Component {
       if (err) {
         console.error("Error on search", err);
       } else {
-        if (isNextPage) {
-          content.hits = currentResults.hits.concat(content.hits);
-        }
+        updateCurrentResults.call(this, currentResults, content);
+        // if (isNextPage) {
+        //   content.hits = currentResults.hits.concat(content.hits);
+        // }
 
-        this.setState({ currentResults: content });
+        // this.setState({ currentResults: content });
       }
     });
   }
