@@ -11,7 +11,7 @@ const createResultsItems = (hits, isExpanded) => {
     <ResultsItem restaurant={restaurant} key={restaurant.objectID} />
   ));
 
-  return isExpanded ? itemsList : itemsList.slice(0, 3);
+  return itemsList;
 };
 
 const isFullResults = (currentResults, isExpanded) => {
@@ -50,21 +50,6 @@ const Results = ({
       </ul>
 
     </div>
-
-    {
-      isGeoLoading ? (
-        <GeoLoader />
-      ) : (
-        !isFullResults(currentResults, isExpanded) &&
-        <button
-          type="button"
-          className="results__expand-btn"
-          onClick={handleExpand}
-        >
-          Show More
-        </button>
-      )
-    }
 
   </main>
 );

@@ -30,7 +30,7 @@ class App extends Component {
       clientLocation: false,
       currentResults: undefined,
       isGeoLoading: true,
-      isExpanded: false,
+      isExpanded: true,
       isSidebarOpen: false,
       selectedFacets: {
         food_type: {
@@ -125,7 +125,7 @@ class App extends Component {
           content.hits = currentResults.hits.concat(content.hits);
         }
 
-        this.setState({ currentResults: content, isExpanded: isNextPage });
+        this.setState({ currentResults: content });
       }
     });
   }
@@ -193,7 +193,8 @@ class App extends Component {
       facets,
       filters,
       page,
-      ...locationConfig
+      ...locationConfig,
+      hitsPerPage: 5000
     };
 
     return config;
