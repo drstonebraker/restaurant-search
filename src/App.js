@@ -6,6 +6,7 @@ import './App.css';
 
 import Header from './components/Header';
 import Content from './components/Content';
+import updateCurrentResults from './utils/updateCurrentResults';
 
 const client = algoliasearch("T9X7J1FO6M", "46731abd67e0a850c6deee6223e34ffe");
 const index = client.initIndex("restaurant_locator");
@@ -79,7 +80,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getSearchResults();
-    this.getClientLocation();
+    // this.getClientLocation();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -120,13 +121,11 @@ class App extends Component {
     index.search(config, (err, content) => {
       if (err) {
         console.error("Error on search", err);
+      } else if (currentResults === undefined) {
+        content.hits = [];
+        this.setState({ currentResults: content }, this.getSearchResults);
       } else {
-        updateCurrentResults.call(this, currentResults, content);
-        // if (isNextPage) {
-        //   content.hits = currentResults.hits.concat(content.hits);
-        // }
-
-        // this.setState({ currentResults: content });
+        updateCurrentResults.call(this, content.hits);
       }
     });
   }
@@ -175,12 +174,8 @@ class App extends Component {
     const { clientLocation, currentResults, query } = this.state;
     const page = isNextPage ? currentResults.page + 1 : 0;
 
-    let locationConfig;
-    if (clientLocation) {
-      locationConfig = { aroundLatLng: this.state.clientLocation };
-    } else {
-      locationConfig = { aroundLatLngViaIP: true };
-    }
+    const locationConfig = { aroundLatLngViaIP: true };
+
     const facets = [
       "food_type",
       "payment_options",
@@ -195,7 +190,7 @@ class App extends Component {
       filters,
       page,
       ...locationConfig,
-      hitsPerPage: 5000
+      hitsPerPage: 1000
     };
 
     return config;
