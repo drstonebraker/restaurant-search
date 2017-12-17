@@ -1,9 +1,10 @@
 let timeoutID;
 
-const updateCurrentResults = function updateCurrentResults(hits) {
-
+const updateCurrentResults = function updateCurrentResults(newResults) {
   clearAllTimers();
-  this.state.currentResults.hits = [];
+  const { hits } = newResults;
+  newResults.hits = [];
+  this.state.currentResults = newResults;
 
   const recursiveUpdate = () => {
     const { currentResults } = this.state;
@@ -13,9 +14,9 @@ const updateCurrentResults = function updateCurrentResults(hits) {
     const nextChunk = hits.splice(0, 5);
     const newHits = currentResults.hits.concat(nextChunk);
 
-    const newResults = Object.assign({}, currentResults, { hits: newHits });
+    const updatedResults = Object.assign({}, currentResults, { hits: newHits });
 
-    this.setState({ currentResults: newResults }, () => {
+    this.setState({ currentResults: updatedResults }, () => {
       setTimeout(() => recursiveUpdate(), 0);
     });
   };
