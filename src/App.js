@@ -125,7 +125,7 @@ class App extends Component {
         content.hits = [];
         this.setState({ currentResults: content }, this.getSearchResults);
       } else {
-        updateCurrentResults.call(this, content.hits);
+        updateCurrentResults.call(this, content);
       }
     });
   }

@@ -1,7 +1,4 @@
-const updateCurrentResults = function updateCurrentResults(hits) {
-  const { currentResults } = this.state;
-  const newResults = Object.assign({}, currentResults, { hits });
-
+const updateCurrentResults = function updateCurrentResults(newResults) {
   this.setState({ currentResults: newResults });
 };
 
