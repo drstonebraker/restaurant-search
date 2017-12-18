@@ -1,4 +1,5 @@
-let timeoutID;
+import appendResultsItem from './appendResultsItem'
+
 
 const updateCurrentResults = function updateCurrentResults(newResults) {
   clearAllTimers();
@@ -6,22 +7,29 @@ const updateCurrentResults = function updateCurrentResults(newResults) {
   newResults.hits = [];
   this.state.currentResults = newResults;
 
-  const recursiveUpdate = () => {
-    const { currentResults } = this.state;
-    if (hits.length === 0) return;
+  const resultsList = document.querySelector('#results__list');
+  resultsList.innerHTML = '';
+
+  hits.forEach((restaurant) => {
+    setTimeout(() => appendResultsItem(restaurant), 0);
+  });
+
+  // const recursiveUpdate = () => {
+  //   const { currentResults } = this.state;
+  //   if (hits.length === 0) return;
 
 
-    const nextChunk = hits.splice(0, 5);
-    const newHits = currentResults.hits.concat(nextChunk);
+  //   const nextChunk = hits.splice(0, 5);
+  //   const newHits = currentResults.hits.concat(nextChunk);
 
-    const updatedResults = Object.assign({}, currentResults, { hits: newHits });
+  //   const updatedResults = Object.assign({}, currentResults, { hits: newHits });
 
-    this.setState({ currentResults: updatedResults }, () => {
-      setTimeout(() => recursiveUpdate(), 0);
-    });
-  };
+  //   this.setState({ currentResults: updatedResults }, () => {
+  //     setTimeout(() => recursiveUpdate(), 0);
+  //   });
+  // };
 
-  recursiveUpdate();
+  // recursiveUpdate();
 };
 
 function clearAllTimers() {
