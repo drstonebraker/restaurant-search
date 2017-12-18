@@ -225,8 +225,8 @@ class App extends Component {
   // event handlers
   // ***********************
 
-  handleSearchInput(e) {
-    this.setState({ query: e.target.value });
+  handleSearchInput(query) {
+    this.setState({ query });
   }
 
   handleFilterClick(facet, value) {
@@ -275,7 +275,7 @@ class App extends Component {
       >
         <Header
           setRef={(header) => { this.header = header; }}
-          onChange={this.handleSearchInput}
+          handleSearchInput={this.handleSearchInput}
           handleOpenSidebar={this.handleOpenSidebar}
           query={query}
         />

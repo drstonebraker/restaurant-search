@@ -45,8 +45,7 @@ const Results = ({
         }
       </div>
 
-      <ul className="results__list">
-        { createResultsItems(currentResults.hits, isExpanded) }
+      <ul className="results__list" id="results__list">
       </ul>
 
     </div>
