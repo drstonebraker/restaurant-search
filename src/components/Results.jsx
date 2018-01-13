@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import ResultsItem from './ResultsItem';
 import GeoLoader from './GeoLoader';
+import Logo from './Logo';
 
 const createResultsItems = (hits, isExpanded) => {
   if (!hits) return [];
@@ -39,8 +40,9 @@ const Results = ({
               { currentResults.nbHits } results found{' '}
             </span>
             <span className="results__speed">
-              in { currentResults.processingTimeMS / 1000 } seconds
+              in { currentResults.processingTimeMS / 1000 } seconds by {''}
             </span>
+            <Logo />
           </span>
         }
       </div>
